@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-05-11 Сб 22:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Are We GUI Yet</title>
+<meta name="author" content="Aleksandr Petrosyan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Are We GUI Yet</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org732789c">1. Notes on Qt</a></li>
+<li><a href="#orga48f016">2. GTK on Relm4</a></li>
+<li><a href="#org3f01a1f">3. Iced</a></li>
+</ul>
+</div>
+</div>
+<p>
+This is a tiny discussion of why if you're writing your GUI in Rust, life is difficult for you.
+</p>
+
+<div id="outline-container-org732789c" class="outline-2">
+<h2 id="org732789c"><span class="section-number-2">1.</span> Notes on Qt</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+It has problems.
+</p>
+
+<p>
+You, yes you, Have to fuck around with the build system.  It's not abstracted into <code>cargo</code>. It's just something that you have.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-console">error: failed to run custom build command for `universal_config_gui v0.1.0 (/home/app/Git/universal_config_gui)`
+
+Caused by:
+      process didn't exit successfully: `/home/app/Git/universal_config_gui/target/debug/build/universal_config_gui-a52f0ab31450bbcd/build-script-build` (exit status: 101)
+      --- stdout
+      cargo:rerun-if-changed=src/cxxqt_object.rs
+      cargo:rerun-if-changed=qml/qml.qrc
+      cargo:rustc-link-arg=-fuse-ld=lld
+      cargo:rerun-if-env-changed=QMAKE
+      cargo:rerun-if-env-changed=QT_VERSION_MAJOR
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=Qt6Core
+      cargo:rustc-link-lib=Qt6Network
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=Qt6Core
+      cargo:rustc-link-lib=Qt6Qml
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=Qt6Network
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=Qt6Core
+      cargo:rustc-link-lib=Qt6Gui
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=Qt6Core
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=GLX
+      cargo:rustc-link-search=/usr/lib
+      cargo:rustc-link-lib=OpenGL
+      cargo:rerun-if-changed=/home/app/Git/universal_config_gui/src/cxxqt_object.rs
+
+      --- stderr
+      thread 'main' panicked at /home/app/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cxx-qt-gen-0.5.3/src/syntax/qtfile.rs:44:57:
+      Could not read path {} to string: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+      note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+warning: build failed, waiting for other jobs to finish...
+</pre>
+</div>
+
+<p>
+Where in this error message can you find mention of either the missing file:  <code>cxxqt_object.rs</code>, or the file that was actually present but wasn't supposed  to be: <code>q_object.rs</code>.  This is kind of awkward isn't it?  I'll be a bit more forward here.  You should not be under the impression that moving to Rust is magically going to give you better error messages.  In fact, packages like <code>serde</code> are known for producing extremely difficult-to-decode error messages.  And the QML bindings are no different.
+</p>
+
+<p>
+Why bother with Rust at this point, if you're going  to get shitty Qt library feedback might as well remove the extra layer of indirection
+</p>
+
+<p>
+First of all, you, yes you, have to fuck around with the Qt abstractions rather than circumvent them in a Rust-idiomatic way.  No, you don't get an <code>Option</code>. You get a <code>QVariant</code>.
+</p>
+
+<p>
+Error handling is not easier.  In fact, because Rust tends to solve problems in a different way: by having an explicit value returned and discouraging panics, it's a lot harder to do here.  Every function is both potentially fallible and never leaving you with any option to handle the error.
+</p>
+
+<p>
+Example,
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">fn main() {
+        // Create the application and engine
+        let mut app = QGuiApplication::new();
+        let mut engine = QQmlApplicationEngine::new();
+
+        // Load the QML path into the engine
+        if let Some(engine) = engine.as_mut() {
+                engine.load(&amp;QUrl::from("qrc:/main.qml"));
+        }
+
+        // Start the app
+        if let Some(app) = app.as_mut() {
+                app.exec();
+        }
+}
+</pre>
+</div>
+
+<p>
+Engine returns an <code>Option</code> which is idiomatic Rust.  Not my preferred style,  but I can forgive that.
+</p>
+
+<p>
+In Rust all lines that can fail, do so in one of two ways: either a panic, which can be controlled, but usually results in a trace back and termination, or by forwarding a <code>Result</code>.  Guess which of these does <code>engine.load</code> do? Well, it locks up the process, and prints a message that it couldn't find the file in the <code>qrc</code>.
+</p>
+
+<p>
+Now I've done this before, so I know what was missing.  But imagine that I didn't.  What, in your error message indicates what I need to do?
+</p>
+
+<p>
+Second problem is in the form of <code>app.exec</code>.  This is a blocking call.  More importantly this is a blocking call that <i>must</i> live on the main thread.  Do you know what this means?  Exactly, it means that if you try and use <code>tokio</code> with this thing, you are going to find your life miserable.  See above.
+</p>
+
+<p>
+But to be quite honest, these things are problematic, but can be chalked up to a skill issue.  What about the potential productivity?
+</p>
+
+<p>
+Well, again, I would argue that exposing your Rust code via <code>extern "C"</code> is likely going to be more productive.  While it is possible to link against C++, the fact that Qt has a different convention to Rust, and is one of many supported by C++, error handling, build systems, &#x2026;  hell, even handling regular inheritance of objects in Qt is just too much of a hassle.  It looks like you're writing Rust, but it increasingly looks like C++.
+</p>
+
+<p>
+And that's the key problem.
+</p>
+
+<p>
+I get almost none of the benefits of Rust, because of the exposure to Qt. There's no way of combining the two APIs.  There's no way to circumvent the meta-object-compiler, and Rust is compiled to something that has all of the features of a C++ class.
+</p>
+
+<p>
+And why not use C++ at this point? C++ isn't that terrible, not objectively, and it would give you a much better range of documentation.  In Rust, you'd be lucky to find a tutorial.
+</p>
+
+<p>
+One area I'll give Rust an advantage, is that idiomatic Rust is much more prone to attribute macros: so code like this is not out of the ordinary:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">      #[cxx_qt::bridge] mod my_object {
+      #[cxx_qt::qobject(qml_uri = "demo", qml_version = "1.0")]
+      #[derive(Default)]
+      pub struct Hello {}
+
+      impl qobject::Hello {
+              #[qinvokable]
+              pub fn say_hello(&amp;self) {
+                      println!("Hello world!")
+              }
+      }
+}
+</pre>
+</div>
+
+<p>
+What is out of the ordinary, is that this object needs to be registered in the <code>build.rs</code> "script".  This is, for lack of a better word, not a foot-gun. Much worse than that, it is a crotch gun, with extra hot rounds, and a hair trigger.
+</p>
+
+<p>
+I can see this being improved in later iterations, but I don't think that it is wise to depend on these either directly, using either <code>PySide</code> or proper C++, or to not engage with Qt at all.
+</p>
+
+<p>
+Alas, because I had already tried to implement a parser in C++, so I will try and take the second approach.  I still think that contributing to the C++ ecosystem via Qt applications using the native C++ is probably something I'll  keep doing.  However, I will do so as part of preexisting KDE projects, not by creating a new project.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga48f016" class="outline-2">
+<h2 id="orga48f016"><span class="section-number-2">2.</span> GTK on Relm4</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This is problematic.  I find that the amount of boilerplate needed to accommodate the stupidity of GTK also not doing things right in the exact same way as Qt is just too much for me.
+</p>
+
+<p>
+It's possible to do that.  But I sincerely doubt it'd be a useful use of my  time.  Generating an ad-hoc component requires a "factory", (which is a sign of abstraction creep).
+</p>
+
+
+<p>
+GTK is itself not a terrible library, but it is difficult to maintain if not antithetical to the Rust way of doing things.  There are reasons to use a specific version of Rust libraries.  And there are reasons to choose specific versions of GTK.  Unfortunately the only version of GTK that is available is the one that came preinstalled with the particular distribution.  This problem is more apparent with GTK than it is with Qt, because arguably, the Qt company has gone to great lengths to ensure that the libraries remain ABI stable.  Given that Rust prefers static linkage, and GTK is linked primarily dynamically and is infamous for making frivolous changes to its API (much less ABI), we end up with a conundrum of exponential explosion of requirements.
+</p>
+
+<p>
+One way to fix it is to do static linkage.  The other way is to package into a reproducible format (<i>e.g.</i> <code>nix</code>, or <code>guix</code>).  Finally as a last resort, one can package the problem into slightly (and only slightly) less defective packaging standards, snaps and flatpaks which can reasonably be argued to be minor upgrades to <code>deb</code> and <code>rpm</code> respectively<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org3f01a1f" class="outline-2">
+<h2 id="org3f01a1f"><span class="section-number-2">3.</span> Iced</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This is raw.  But it is a forward-looking time investment.  At the very least it is actively developed and statically linked.
+</p>
+
+<p>
+Let me explain why those two points are extremely important.  Firstly, and most importantly, there's no issue of outdated system libraries. Yes, you're wasting a bit more space that way, but far less than if you actually used a Flatpak and lost CPU cycles/had to do a bunch of <code>unsafe</code> to work around FFI.
+</p>
+
+<p>
+Secondly, the static linkage allows me to go into the implementations of the native components and write a new one in Rust. If that is not important, consider how much work would I need to do in order to do the same  with&#x2026; I don't know, maybe Qt components. It is a foregone conclusion that any real implementation of a new Qt component is going to merely expose a QML interface, but be implemented in C++ and highly optimised.  Now consider that it is not even not standard C++ it is not even the latest standard <i>of</i> C++ that is, for lack of a better word, shoved down our throats. This is for lack of a better term, a problem. I don't know if it's going to be a good idea to do that.
+</p>
+
+<p>
+This is an interesting technology that is somewhat risky to invest into.  There used to be <code>orbtk</code> that went almost completely extinct in a span of two years. GTK and Qt make for better investments in terms of reliability, but they can be (well for lack of a better term) the dinosaurs of yesteryear in a couple of years.
+</p>
+
+<p>
+Make no mistake, I do think that Qt is the superior toolkit in terms of time investment and end result. The problem is that Qt is a little too tightly coupled to C++. Rust still has a long road ahead of it. It's not a new language by any means, but it will be around for a long while, thanks to it being accepted into the Linux kernel, C++ has been around and while it made major strides in the recent years to become more modern, it's both a benefit and a drawback. This is enough change to polarise the community, and not enough change to entice new users. Believe me, I know, I've this happen to Emacs, and long before then to Java. The main issue is the mind-share. There was nothing particularly wrong with COBOL, especially in the area for which it was developed.  Nonetheless, popular opinion made it go down under and eventually disappear.
+</p>
+
+<p>
+While <code>iced</code> is a worse investment at this time, it has made some decisions in precisely the way it needed to, to ensure that it will be a better investment in the medium term. Long-term? Time will tell.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+To anyone who would like to presuppose that these packaging standards are either obviously, or majorly better than <code>deb</code> and <code>rpm</code>, I would invite them to install a Flatpak version of <code>steam</code>.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Aleksandr Petrosyan</p>
+<p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
+<p class="date">Created: 2024-05-11 Сб 22:04</p>
+</div>
+</body>
+</html>

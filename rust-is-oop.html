@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-05-11 Сб 22:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust is an OOP langauge</title>
+<meta name="author" content="Aleksandr Petrosyan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Rust is an OOP langauge</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orged4f508">1. Think objects</a></li>
+<li><a href="#org9c5649b">2. Think classes and interfaces</a></li>
+<li><a href="#orgcfb1f9f">3. Encapsulation</a></li>
+<li><a href="#org147f2a1">4. Methods inherent to types</a></li>
+<li><a href="#orgca3a445">5. Dynamic dispatch</a></li>
+<li><a href="#org96f07a3">6. Conclusion</a></li>
+</ul>
+</div>
+</div>
+<p>
+And a terrible functional one.  As in yes, there are anonymous functions (Java has those too), there are typeclasses, (if you squint hard enough, it's just like interfaces in Java), and in fact, pattern matching with tagged unions as a first class citizen can be the only thing that can even with some gusto be argued to be a functional feature.
+</p>
+
+<p>
+But I'm not here to pounce on Rust's uselessness in teaching functional programming, that is a topic for another article.  I don't hate Rust and I don't want to fling more negativity its way than I have to.
+</p>
+
+<p>
+But I will argue that Rust is truer to the original vision of OOP than the half-hearted attempts in Python, and the principled, though baroque approach adopted in Java.  It is not quite on the same level as SmallTalk, JavaScript or Objective C, but those languages are largely misunderstood.
+</p>
+<div id="outline-container-orged4f508" class="outline-2">
+<h2 id="orged4f508"><span class="section-number-2">1.</span> Think objects</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Many are under the impression that just because there isn't a word <code>class</code> native to Rust that this means that Rust doesn't have either classes or objects.  That is far from the truth.  In fact, I would argue that it forces you to think of objects more object like than either C++ or Java do.
+</p>
+
+<p>
+Think about it.  Even something as "benign" as a string is a thing that has a beginning and an end.  It has a lifetime.  Within that lifetime, the object can be signalled.  Outside of that lifetime, signalling that object is forbidden, at least within the safe subset of the language.   There is a specific way of referencing an object in that context.  Unlike what the C++ (and C-like) syntax would suggest, there are no references in Rust.  There are borrows that for historical reasons (failure to plan ahead) are called mutable and immutable.  The reason there is a distinction is because of a rule that is being enforced by any Rust compiler, there can either be one reference through which a larger subset of operations is permitted (called a <code>mutable</code> reference, but this is a misnomer<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>), or any number of more strict references that incidentally are only valid for the duration of the object's lifetime.
+</p>
+
+<p>
+So how is this <b>not</b> OOP?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c5649b" class="outline-2">
+<h2 id="org9c5649b"><span class="section-number-2">2.</span> Think classes and interfaces</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+If one has read my personal blog (this will be published here as well, at some point) you will know that things like inheritance are not intrinsic to OOP, but in fact solve a problem that is imposed by the paradigm.
+</p>
+
+<p>
+To put it simply, instead of having direct access to most objects, one has to go through the pain of using signals and in the vast majority of cases, a function is not a good representation of what a signal is supposed to mean.  The corollary is that to map signal processing to methods to functions one basically needs to invent a way of generating a lot of boilerplate for trivial cases.
+</p>
+
+<p>
+Let's illustrate on an example, perhaps a bit more contrived.  In an OOP world, there is no state, there are only signals.  The only way to communicate with an object to query its state is via signals.  But most signals are trivial.   A programming language like SmallTalk solved this problem easily, and the modern day problems related to it have more to do with the refusal to let go of the procedural aspects of programming than with the ineptitude(s) of the OOP paradigm.  Case in point, if one wanted to model the animal kingdom<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, there are various signals one can process, like <code>eat</code>, <code>drink</code>, <code>reproduce</code> which are not simple queries of one's state<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.  Yet, they are all trivial.  In the domain of the problem, most diets fall into categories of carnivore and herbivore, reproduction is similarly categorised very simply, with some notable outliers.  <b>Most of the signals for most of the objects are going to be identical.</b>
+</p>
+
+<p>
+Now here I will make a distinction in how OOP languages traditionally solved the problem of repeated code, and why the solution in Rust is better, though not fundamentally different.
+</p>
+
+<p>
+The first key assumption is that there is a clear hierarchy.  Within the C world, one would make a table for all unique functions and then point each individual entity's behaviour function pointer to that function.  So adding each new species entity isn't a hard task.  But the amount of work is certainly sub-optimal.  So one needs to spend a bit more time and see that there are categories of herbivore and carnivore, vertebrate vs invertebrate, and to come up with a tree of inheritance that tends to categorise animals by which behaviour they engage in.  Sometimes, if the behaviour follows from another behaviour, and as a crucial difference from the function pointer approach, one can make a shortcut.  Java, Rust, Haskell, and C++ all do it that way.   But the devil is in the details.
+</p>
+
+<p>
+With Java and C++, the assumption is that the participation in an interface a particular way is tied to the object's self.  A cat, isn't just something that <i>happens</i> to implement <code>Carnivore</code>.  Instead, being a <code>Cat</code> is inextricable from being a <code>Carnivore</code>.  While it does make sense for a cat, consider what the inheritance hierarchy for a Platypus would look like<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>.
+</p>
+
+<p>
+With Haskell and Rust, one is given a way to make use of the categorical shortcuts, without making it too much a part of the type.  So a <code>Cat</code> happens to be <code>Carnivore</code>, being a <code>Carnivore</code> implies you have a mouth, so the ability to <code>drink</code> becomes obvious.  But at the same time, something like a <code>Platypus</code> isn't necessarily any of those things.  It can fall outside the regular categories and implement the basic low-level interfaces.
+</p>
+
+<p>
+Now it might seem that because the technical difference is subtle, that the resulting code is also different only subtly.  But that is far from the case.  In <i>e.g.</i> 'Fallout New Vegas', the vehicles are hats attached to an entity.  This is not what a non-technical person would assume does the walking, but the way the code is organised makes it harder to do anything else.  With Haskell and Rust, the act of moving is less tightly coupled, and that gives one more room to manoeuvre with semantics.  This approach is more granular, and discourages trying to model every aspect of the domain taxonomic-ally.  You're writing procedural code where it's more convenient, but if you need to impose a hierarchy of interfaces, they are there and very minimal.
+</p>
+
+<p>
+Incidentally, it's worth discussing the prototype-based inheritance model.  Philosophically speaking this is what we think there to be happening in the real world, <code>Mammal</code> and <code>Carnivore</code> are human categories that might not apply long term.  As such, the inheritance of signal processing methods is not something inherent to types, it's just something that tends to happen at construction.  Your being <code>Human</code> and your <code>entity.name =</code> "Larry"= are on equal footing of being accidentally true, but not necessarily as meaningless as in C.
+</p>
+
+<p>
+So with Rust, you are actually imposing a hierarchical structure, you're just not being overly sentimental about it, and you apply taxonomy based on practical considerations inherent in category theory, and not replicating and badly designing an object model <i>ad hoc</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcfb1f9f" class="outline-2">
+<h2 id="orgcfb1f9f"><span class="section-number-2">3.</span> Encapsulation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+One of the most important aspects of OOP is the establishment of boundaries.  Alan Kay's original vision is that state is only meaningful from the perspective of the inherent methods.  Naturally this leads to even more code being required to query the state outside the object, more work and more thinking.  So programming languages like Java allowed some state to be public, similarly to C, but unlike C, any attempt to access the inaccessible state is a compilation error<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>.
+</p>
+
+<p>
+So where does that leave us?
+</p>
+
+<p>
+Well, in Rust pretty much all the same is present.  You can choose the visibility of an object's properties almost universally in a granular fashion.  This is as good as Java, because I can control the access to any field, without having to change its place.  Moreover, unlike having to remember which vague statement corresponds to which scope, I have a simple <code>crate</code> meaning "translation unit", <code>super</code> meaning "also in the enclosing module", and plain, meaning "in general".  This makes it more likely that I won't frivolously add a "getter" and a "setter" which essentially do the exact same as public access would.
+</p>
+
+<p>
+More importantly, we have a natural way of deciding on two kinds of public access with respect to mutation.  The mutable borrow allows more interactions with an object, and thus even for things that are technically public, there is some granularity.  The main application of this is to ensure that the proper synchronisation steps have been taken to ensure a consistent view from all possible access points.  In other words, this is used to make sure that if someone reads the state of the object, it cannot be invalid.
+</p>
+
+<p>
+Can the same not be done in Java? Of course it can.  The trouble is that the type system isn't going to warn you (or assuage your concerns) if you have used the wrong kind of access in a particular case.  But there is nothing revolutionary about Rust's use of obfuscation to prevent race conditions.
+</p>
+
+<p>
+Nobody would ever think to articulate the borrow checking as a good old fashioned encapsulation mechanism.  Interior mutability is just a way to allow unprivileged mutation.  That's really it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org147f2a1" class="outline-2">
+<h2 id="org147f2a1"><span class="section-number-2">4.</span> Methods inherent to types</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Rust has inherent <code>impl</code> s, do I need to say more than that?
+</p>
+
+<p>
+To most, the ability to attach methods to objects is what OOP is all about, and I'm all for it.  Postfix notation has its benefits.  Is it easier to read something like
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">mapErr (read thing) (toLower)
+</pre>
+</div>
+
+<p>
+or like this? 
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">thing.read().map_err(String::to_lower)?
+</pre>
+</div>
+
+<p>
+I'll admit that personally I think that the prefix is just as readable, but the pipeline approach with a very simple semantic, and the ability to do auto-completion after the full stop is entered is enticing.  While the mechanisms are exactly identical, the readability of the more verbose Rust is actually helped by the ability to use <code>.method()</code> calling conventions.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca3a445" class="outline-2">
+<h2 id="orgca3a445"><span class="section-number-2">5.</span> Dynamic dispatch</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+This is somewhat controversial.  Rust is very opinionated about dynamic dispatch.  And it allows it, though it doesn't clearly communicate that sometimes (very often in fact) it is the right tool for the job.
+</p>
+
+<p>
+There are reasons why people prefer explicit generics in Rust, but all of those come down to distrust of the LLVM devirtualiser.  A lot of the time, the compiler is smart enough to figure out what to do in your stead.  Trust it, a lot of the time that <code>Vec&lt;Box&lt;dyn TradeTraitPlzBeFast&gt;&gt;</code> is not actually using late binding; you don't need a "God" <code>enum</code>, all you need to know is if <code>dyn Trait</code> objects were useless, the Rust team would probably have gotten rid of it.  More so because trait objects don't always work in situations in which generics would, and definitely not in the same way.
+</p>
+
+<p>
+What I find really fascinating is the staunch refusal to recognise that the success of NextStep and as such, the polish of the Mac OS operating system all come down to late binding allowing more freedom.  There are numerous projects that refuse to use <code>dyn Trait</code> out of principle, despite that simplifying their code substantially.  If your code is twice as long, half as readable, and compiles to the same assembly as if you used an opaque type or a generic, you are not allowed to talk about Rust.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org96f07a3" class="outline-2">
+<h2 id="org96f07a3"><span class="section-number-2">6.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Rust is OOP.  It is in fact, OOP at its best so far.  It is no way comparable to OCaml (and definitely not StandardML), but it is comparable to C++ or SmallTalk, even though those languages still have certain advantages, nothing in tech is ever a direct upgrade.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: The reason is quite quaint.  Firstly, as can be seen with something like an <code>AtomicU64</code> or <i>e.g.</i> anything wrapped in a <code>Mutex</code>, not having a mutable reference isn't a guarantee of immutability, just that the mutation is properly synchronised.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: Notice how none of the neat examples in OOP, come from actual life situations and almost always are reduced to contrived examples where a clear class hierarchy of the type "is a" can be established.  This is why OOP has fallen out of favour these days.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+:  Outside the OOP world, in a procedural language like C, every field of every structure is always available.  So you can always do <code>thing.state</code> to read the state of an object.  In OOP, this is problematic, so in something like C++, you are encouraged to either delineate which translation units are allowed to access the state of an object and which aren't.  But in some cases, access can mean either read or write.  Instead of coming up with a permission system a-la Unix, we have instead invented a convention, wherein we restrict both read and write access, and when we need read access, we call <code>thing.get_state()</code>, or <code>thing.set_state(new_thing_state)</code> where the method <code>set_state</code> is responsible for ensuring that the object remains in a valid state<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>.  But here is the problem.  This led people to make "safe" assumptions about what the state can be.  So idiotic guidelines along the lines of "if it doesn't have to be publicly visible, make it private" were invented, without actually telling people that&#x2026;  you know&#x2026;  there aren't always resources to make the call <code>thing.set_state(new_thing_state)</code> to compile down to what the programmer actually wants.  This is a minor problem, compared to yet another guideline: "mark every member of every class that is private with a dumb prefix of your manager's choosing".  For example, if you happen to be working with Qt, your private variables are to be prefixed with <code>m_</code>, as if we can't already tell that you're a moron who refuses to use a machine that can properly differentiate private and public members in the editor window.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: A lot of the time, this logic cannot be delegated to anyone else, and because the typing system of C++ is stronger, but weak enough to be compatible with C, you cannot state that something is <code>unsigned int</code> and have that communicate to the programmer that they can't exactly set the value to a negative number.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+There is an interesting fact in biology.  Many species tend to evolve into a crab-like form independently.  Modelling this in a precise fashion would be impossible because in languages  such as Java, such patterns are not legal.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: Some are under the false impression that this implies that the state <b>cannot</b> be accessed outside that object.  This is completely untrue, because knowing the layout of the object allows one to read the end-point of a raw pointer, in languages other than Java.  And if you think that you will always only be interacting with Java from Java, you are sorely mistaken.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Aleksandr Petrosyan</p>
+<p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
+<p class="date">Created: 2024-05-11 Сб 22:04</p>
+</div>
+</body>
+</html>

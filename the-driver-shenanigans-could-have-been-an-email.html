@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_GB" xml:lang="en_GB">
+<head>
+<!-- 2024-05-11 Сб 22:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The driver shenanigans could have been an email</title>
+<meta name="author" content="Grid" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">The driver shenanigans could have been an email</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#in-the-beginning">1. In the beginning</a></li>
+<li><a href="#linux-is-not-the-bees-knees">2. Linux is not the bees knees</a></li>
+<li><a href="#erasure-of-ownership">3. Erasure of ownership</a></li>
+<li><a href="#the-m1-paradox">4. The M1 paradox</a></li>
+<li><a href="#a-return-to-ownership">5. A return to ownership</a></li>
+<li><a href="#linux-the-kernel-is-bad-news">6. Linux the kernel is bad news</a></li>
+<li><a href="#case-study-adata-expunged-mouse">7. Case study: A[DATA EXPUNGED] mouse</a></li>
+<li><a href="#unnecessary-complication">8. Unnecessary complication</a></li>
+<li><a href="#general-computation-in-the-third-millenium">9. General computation in the third millenium</a></li>
+<li><a href="#conclusion">10. Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-in-the-beginning" class="outline-2">
+<h2 id="in-the-beginning"><span class="section-number-2">1.</span> In the beginning</h2>
+<div class="outline-text-2" id="text-in-the-beginning">
+<p>
+Long ago, in February 3, 1976, Bill Gates wrote an
+<a href="http://www.blinkenlights.com/classiccmp/gateswhine.html">open letter</a>
+to the programmers of the time, asking for justice. To quote, "Hardware
+must be paid for, but software is something to share. Who cares if the
+people who worked on it get paid?"
+</p>
+
+<p>
+He asked whether this imbalance is fair, as software development takes
+skill and hard work. It changed the market quite a bit since then. While
+his approach is not fully to blame for what he have nowadays, we seem to
+accept a massive mistreatment regarding the drivers for the hardware we
+buy. While these things should be overall simple and provide simple
+interfaces, they tend to limit the customer and provide the limited
+specifications for a closed group, only to give more profits to the
+manufacturer by making the process inconvenient for the end user.
+</p>
+
+<p>
+At the same time, there isn't enough pressure from the customers, so the
+hardware manufacturers are trying to treat people worse and worse, as in
+the "<a href="https://en.wikipedia.org/wiki/Boiling_frog">boiled frog</a>".
+</p>
+
+<p>
+Case in point, engineers at NVidia didn't want to co-operate on how the
+Linux kernel was designed. They, kinda <i>know</i> how to do things already,
+and you shouldn't tell them what to do. The consequence of which is that
+while the NVidia drivers were the only drivers at the time which were
+half decent (remember ATI didn't share the same love of FOSS as AMD has
+these days). Long ago, Linus flipped off the green company; his
+legendary "<a href="https://www.youtube.com/watch?v=tQIdxbWhHSM">Nvidia, fuck
+you</a>" to raise awareness of this situation. Users did nothing. As
+always.
+</p>
+
+<p>
+Or rather, if it did happen, it was put under considerable amounts of
+red tape, most people didn't realise what was happening, and nobody,
+including I, remembers a period of angry letters from the gamers asking
+the corporation to treat them better. And nothing but Linus's reputation
+changed from that point on. NVidia produced a series of drivers that
+bricked devices. NVidia produced drivers only for as long as it was
+necessary, coining the term AMD finewine technology.
+</p>
+
+<p>
+These days, if you want to have an NVidia GPU on your Linux system, you
+are to contend with a myriad of bugs, no first-party support, shoddy
+support for new technologies such as Wayland (cue it's Wayland's fault
+for trying to fix X11's architecture), have only the choice of one
+proprietary driver which is liable to turn your system into an
+unbootable mess. Sadly, the sole outcome of Linus' frustration was that
+he is regarded as "somewhat of an arsehole", despite him being very
+forthcoming, honest, and in some areas extremely self-conscious.
+</p>
+</div>
+</div>
+
+<div id="outline-container-linux-is-not-the-bees-knees" class="outline-2">
+<h2 id="linux-is-not-the-bees-knees"><span class="section-number-2">2.</span> Linux is not the bees knees</h2>
+<div class="outline-text-2" id="text-linux-is-not-the-bees-knees">
+<p>
+Consider that Linux itself, as an alternate platform, is not the whole
+picture: there's NetBSD, FreeBSD, there there's three Operating Systems
+written purely in Rust, there's <a href="http://managarm.org/">Managarm</a>,
+<a href="https://samhsmith.com/serenum/">Serenum</a>,
+<a href="https://www.haiku-os.org/">Haiku</a>; they don't use the Linux kernel
+and frankly can't even if they wanted to. They have to write their
+kernels, but those kernels would make the already niche operating system
+even more niche, because you don't have access to drivers. And you want
+newer kernels, you want people to disrupt, simplify and improve things.
+Sure, a lot of engineering has gone into ensuring that the C code in
+Linux is memory-bug-free, but consider what is enforcing that
+consistency? The engineers that did the original work, probably don't
+even want to touch the kernel anymore. All code written in safe Rust is
+safe. C code needs a lot of skill to reach that same level, and often
+lacking that skill means lacking any change.
+</p>
+
+<p>
+Standards matter. Linux standards matter doubly so, because Open Source
+communities seldom if ever take the time to research whether a standard
+exists for their work, and produce programs that are of a
+take-it-or-leave-it kind. Still, it is not too difficult to make a
+standards conforming implementation, if at least one can fix the issues
+that annoy them via a pull request.
+</p>
+
+<p>
+With NVidia, you get their control panel, that doesn't exactly reflect
+the state of the world, and refuse to expose any of the APIs, so that a
+better implementation could exist. Case in point AMD doesn't ship their
+Radeon Software, that comes with some very interesting features like
+Radeon Chill, or the Wattman GUI that runs pretty much from inside the
+game. We don't have that, but we have OSD and overlays that accomplish
+the same goals. We can integrate the graphics card options into KDE
+system preferences or Gnome Settings and live with that as a fairly
+useful, extremely flexible way of doing things. NVidia just shits all
+over that. You get the standard Control panel, (where NVidia controls
+your card), you don't get anything remotely resembling the GeForce
+Expereience on Windows, and you can't build anything on your own to
+compensate, because&#x2026; well, you can't build anything for NVidia if
+you're not already working at NVidia.
+</p>
+
+<p>
+More to the point, we don't want drivers just for Linux. I want to have
+my graphics card work on Risc-V, and some exotic operating system I
+wrote. I can't, and that's the whole point.
+</p>
+</div>
+</div>
+
+<div id="outline-container-erasure-of-ownership" class="outline-2">
+<h2 id="erasure-of-ownership"><span class="section-number-2">3.</span> Erasure of ownership</h2>
+<div class="outline-text-2" id="text-erasure-of-ownership">
+<p>
+We want to buy and use the latest hardware however we want. Is that too
+much to ask? Apparently, 40 years ago when every piece of electrical
+hardware came with its own schematic, it wasn't infringing on
+innovation, and it didn't stop us from producing things that worked very
+well. We could jerry rig what remained of our old washing machine into a
+drill or maybe a CNC. Simple, efficient, and best of all, it encouraged
+ownership.
+</p>
+
+<p>
+Nothing but the manufacturer's resistance prevents us from having it
+again. And this is resistance: the reverse engineering of a driver isn't
+something that manufacturers welcome. The NVidia GPU's instruction set
+is encrypted, and any attempt at reverse engineering their cards is
+liable to just brick the card. If you try to reverse engineer Haier's
+home "assistant", and produce a free and open source program from it,
+guess what&#x2026; "you've caused them damages". Incidentally, since writing
+about this problem, some
+<a href="https://github.com/Andre0512/hon/issues/147">interesting developments
+happened</a>. Unfortunately, the <i>best</i> outcome for a frivolous lawsuit
+against a single person doing the reverse engineering of what should
+have been available to all customers from the very start is that he will
+be able to continue their thankless work uninterrupted.
+</p>
+
+<p>
+If you build proprietary hardware, you don't have to keep everything
+locked off. <a href="https://tinysa.org/wiki/pmwiki.php?n=Main.Buying">TinySA
+Ultra</a> that cost me $119 has the code close enough to specs on GitHub:
+<a href="https://github.com/g4ixt/QtTinySA/">QtTinySA</a>. You can look at it and
+write your code based on it. It also checks itself for potential issues
+(reduced linearity) and has a calibration feature in a cheap package. I
+get all of this for a low cost. Compared to my computer mouse, which,
+for that matter, costs more and is less reliable, this is a lot. Korad
+KA3005P programmable DC power supply is great in that regard, too.
+Besides USB, it also has a COM port that makes installing several units
+in a lab to be controlled remotely from a single point very simple and
+convenient: there's no simpler protocol than UART and I can simply look
+up the commands that can be used with it: just look at
+<a href="https://sigrok.org/wiki/Korad_KAxxxxP_series">Sigrok wiki</a> or
+<a href="https://www.tspi.at/2022/07/15/ka3005ppython.html">TSPI.at</a>. Some
+will raise the copyright issue, but the goal of the driver is to serve
+the user, not to hook up the user to some limited platform and not to
+limit the user. If copyright is going towards harming people, this part
+of the law should be altered, and violently.
+</p>
+
+<p>
+The fact that TinySA can survive, and that Haier claims damages over
+what&#x2026; and it bears reminding&#x2026; <i>should have been made available in
+their software in the first place</i>, goes to show that a lot of "we won't
+survive if the laws change, and people we sell stuff to begin to
+actually own it" can be replied with "Yes! you will die as a business.
+Go learn a useful skill, or find a business model that actually works".
+</p>
+</div>
+</div>
+
+<div id="outline-container-the-m1-paradox" class="outline-2">
+<h2 id="the-m1-paradox"><span class="section-number-2">4.</span> The M1 paradox</h2>
+<div class="outline-text-2" id="text-the-m1-paradox">
+<p>
+I can't help but wish the expensive coprorate GPUs had the drivers as
+good as a cheap lab hardware. GPUs are more complex, but in the end,
+they crunch numbers and can be controlled similarly enough. Someone
+would object as there's a program on Spir-V being loaded on a GPU. I
+would object back by telling my MCU programmers never reached that level
+of enshitification.
+</p>
+
+<p>
+What is interesting is that Apple's M1 GPU which is integrated, closely
+guarded and in principle should be impossible to write a driver for, is
+actually in a better shape than most NVidia GPUs. To the point Rust was
+allowed into the Linux kernel, not least because the original
+implementation in the Asahi Linux Kernel was in Rust.
+</p>
+
+<p>
+So how in the world does NVidia claim that its drivers are <i>sacresanct</i>,
+while Apple can afford people reverse engineering their machines and
+installing an alternative operating system? Well, they can't do it
+across the board, and that's a key issue. The newer the kind of
+hardware, the easier it is to sway incompetent politicans with cliche's
+such as security and safety. Gasoline is just as combustible as Lithium,
+and there's a lot more damage that can be done if one opens up a car
+engine versus a phone. Yet for cars, because we've done it for close to
+a hundred years, we're fine with people owning their stuff, and we play
+"oh but a lithium fire can be dangerous, therefore don't open it" as an
+argument against making phones repairable.
+</p>
+
+<p>
+So why does the M1 have better driver support than NVidia's equivalent
+GPU? Probably because Apple can't even attempt to try and lock down Mac
+OS to the same extent it locked down IOS. In fact, with the gatekeeper
+act, it might need to unlock IOS at least in one part of the globe.
+That's why they're pushing the iPad as the laptop killer. It wants to
+kill the laptop, and have you complicit in it. It wants you to think
+that their Macs don't sell as well, to the point to which they'd
+sabotage the laptops in order to allow themselves the ability to lock it
+down. They can't lock the bootloader yet, and that's something I'm
+extremely happy about, but for how long? We need to make sure this isn't
+a temporary convenience that will go away.
+</p>
+</div>
+</div>
+
+<div id="outline-container-a-return-to-ownership" class="outline-2">
+<h2 id="a-return-to-ownership"><span class="section-number-2">5.</span> A return to ownership</h2>
+<div class="outline-text-2" id="text-a-return-to-ownership">
+<p>
+We buy the hardware and we own it. One can make a reasonable argument,
+that the drivers necessary for me to use the thing are just the same as
+the manual, documentation that has to come with the product. There's
+something known as
+<a href="https://en.wikipedia.org/wiki/Arrow_information_paradox">the Arrow
+information paradox</a>, which can in principle apply to intellectual
+property over the software that was written in service of the hardware,
+but the opposite approach would mean that we are at least somewhat
+hypocritical about how we handle money. There's a profound asymmetry
+between the buyer and the seller, and the regular Economics 101 logic of
+"the buyer can buy something else" assumes perfect organisation on the
+buyer's side and adversarial relationships between elements of
+olygopolies.
+</p>
+
+<p>
+In other words, if you can either take it or leave it, the only way that
+leads to a better product, is if there's a co-ordinated boycott of
+certain products. To add insult to injury this would only work if the
+other party, the manufacturers didn't collude into cartels and forced
+their will onto you. Case in point, Apple remove the headphone jack,
+everyone else removes the headphone jack. Can you take it or leave it?
+Possibly. But you're going to take it. And that's the problem.
+</p>
+
+<p>
+We've grown so accustomed to supporting drivers being binary blobs,
+instead of&#x2026; I don't know&#x2026; an interpreted/compiled language that you
+could have an opaque compiler for? Maybe even the source code coupled
+with a legally binding agreement, such that you could compile the same
+drivers for other systems, but you couldn't change them beyond that. And
+if you think this process will take a lot of time, think again! Just
+look at Fabrice Bellard's <a href="https://bellard.org/tcc/tccboot.html">TCC
+Bootloader</a>. We'll reserve commentary and say that "it just works"
+doesn't quite communicate how much of a marvel of engineering it would
+be. It would mean that you would no longer even have to load up kernel
+modules for hardware that you can't even possibly have. Improve boot
+times, make the kernel more flexible and don't worry much about the
+other aspects. A lot of industries and a lot of complexity simply
+vanishes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-linux-the-kernel-is-bad-news" class="outline-2">
+<h2 id="linux-the-kernel-is-bad-news"><span class="section-number-2">6.</span> Linux the kernel is bad news</h2>
+<div class="outline-text-2" id="text-linux-the-kernel-is-bad-news">
+<p>
+Make no mistake, for the time being, GNU Linux is the best thing out
+there. We shall daily drive it for as long as this is the closest thing
+to a free and open source operating system that puts the user first.
+It's not very user friendly, on account of its architecture being far
+better suited for the infrastructure role for which it is mostly used
+and developed, but it is nonetheless the best. And that's precisely the
+problem; the best is just not good.
+</p>
+
+<p>
+Having Linux as a sole free kernel at the center of attention, prevents
+us from thinking about ownership over the hardware. Nvidia will patch-in
+rudimentary support for things like Wayland for you to shut up about
+their closed-source driver. Meanwhile this kills projects that take an
+even more novel approach like <a href="https://arcan-fe.com/">arcan</a>.
+Thankfully, Wayland is a protocol, so you can eat your Wayland cake.
+</p>
+
+<p>
+But that is not a world I'd like to live in, simply put. Imagine
+installing Linux and then other kernels without bloatware on your phone
+and not having the unremovable applications. Imagine the fun of working
+with actual programs and tinkering with stuff you can improve yourself
+instead of relying on the manufacturers. Maybe, just maybe, if we push
+the banks and transport system maintainers hard enough, we can even have
+NFC payments for banks and transport working on the systems we, as
+consumers, have control over.
+</p>
+</div>
+</div>
+
+<div id="outline-container-case-study-adata-expunged-mouse" class="outline-2">
+<h2 id="case-study-adata-expunged-mouse"><span class="section-number-2">7.</span> Case study: A[DATA EXPUNGED] mouse</h2>
+<div class="outline-text-2" id="text-case-study-adata-expunged-mouse">
+<p>
+Modern hardware has a crappy design, in part because we live in a world
+of platforms. There's no such a thing as Free and Open Source Software,
+there's only Linux as a platform.
+</p>
+
+<p>
+I don't even know if I can openly complain that my $135.99 mouse was
+broken due to its incomplete and incompetent handling of the USB-C power
+delivery standard. It has positive online review by positive online
+shills and if I complain, I may be shunned and told I am the source of
+the problem. It was my own goddamn fault for thinking "ha, it has
+hotswappable mouse switches, it must be well-designed and consumer
+friendly". Good thing I never bought a Framework laptop. Back to the
+mouse.
+</p>
+
+<p>
+As soon as I got it, I started seeing implementation issues: besides the
+ridiculous control protocol locking me into using Windows and nothing
+else, I found that connecting the mouse using the USB-C cable to the
+laptop (and computer) briefly disconnected it from the Bluetooth. In
+other words, the design is utter and complete trash and there's no way
+to change it. But the problems aren't stopping here.
+</p>
+
+<p>
+I immediately saw its LEDs flicker. This is due to an unfiltered signal
+from the PWM. The fix is trivial, you add a capacitor, which costs less
+than a cent a piece and given that you're assembling this with Robots,
+maybe another full cent of manufacturing cost. The upshot: making the
+glow smoother. And the manufacturer wanted to pack as much leds into the
+mouse as possible to make it look like a tuned car or a christmas tree.
+</p>
+
+<p>
+But it lit up as a christmas tree in more than one way, unfortunately.
+Plugging the mouse into a power bank that I use a lot of the time,
+resulted in an interesting outcome. It gets hot. Really hot. To the
+point to which it starts smelling of burning platic. I dismantle it
+immediately to notice a red-hot Lithium - Ion battery glued to a piece
+of plastic.
+</p>
+
+<p>
+Concerned about a possible house fire? Well, duh, because I only tried
+to reverse engineer it by plugging it into something else to charge. Do
+you think a small child wouldn't do it? If I had know how it was made
+before I bought it, the mouse would have been a hard pass, but
+thankfully, because the manufacturer is so concerned with my safety and
+security, they made it completely opaque, and prevented me from knowing
+what I bought before I bought it. And I know the first thing I'll hear
+online if I complain about it: "There's a certain percentage of
+defective goods being manufactured, you are just unlucky". In fact, this
+is what my co-author said, until &#x2026; well, I demonstrated the innards to
+them. Indeed a small percentage of goods are defective. And defects
+aren't manufacturing defects, but rather design defects.
+</p>
+
+<p>
+The list of thing that is defective by design is fairly long, and I
+would wager we need to create a collection of things that are defective
+by design and how to avoid them. Case in point, the macbooks that had
+been praised up until this point, have a defective sleep sensor, a
+defective keyboard (if you are insane enough to buy the old butterfly
+switches), a defective cable that has a bus that goes straight into the
+CPU right next to a power line.
+</p>
+</div>
+</div>
+
+<div id="outline-container-unnecessary-complication" class="outline-2">
+<h2 id="unnecessary-complication"><span class="section-number-2">8.</span> Unnecessary complication</h2>
+<div class="outline-text-2" id="text-unnecessary-complication">
+<p>
+Many hardware protocols are open enough. The overcomplication is mostly
+artificial and mostly down to lack of user feedback.
+</p>
+
+<p>
+Bluetooth has an HID specification.
+</p>
+
+<p>
+I can, today, take a SoC and design a mouse with it. I did design a HID
+device for a person with a shitty job years ago: it required one to both
+think about the work issues and then start writing stuff down, while
+tracking only the time one was typing or moving a mouse. So a HID device
+moved a mouse, allowing the person to, surprise surprise, actually do
+work and get paid. Now then, the issues with mouse configuration are
+artificial.
+</p>
+
+<p>
+We're bluntly told <i>we should get less support for using Linux</i>. It's an
+esoteric OS with around 2% of users worldwide. We're not "big enough to
+warrant an investment of time and resources", and certainly investing
+into an ecosystem of specifications that would eliminate the need to
+invest time and money, simply to make different operating systems be
+able to recognise the hardware is too much.
+</p>
+
+<p>
+The one person that bluntly told corporations to instead consider making
+their hardware less shitty, ended up earning an undeserved reputation.
+And mainly because it was one or maybe two people doing that.
+</p>
+</div>
+</div>
+
+<div id="outline-container-general-computation-in-the-third-millenium" class="outline-2">
+<h2 id="general-computation-in-the-third-millenium"><span class="section-number-2">9.</span> General computation in the third millenium</h2>
+<div class="outline-text-2" id="text-general-computation-in-the-third-millenium">
+<p>
+We are losing our grip on general computation. While your phone indeed
+has a CPU that most supercomputers would envy in 1960s, it is treated
+more as an appliance and less as a general purpose computer. You cannot
+compile code on it, you can't play all the games that you would want,
+you can't even ask it not to do things that annoy you. Hell, your phone
+is considered less secure, because you've obtained root access to it.
+</p>
+
+<p>
+Consider what science fiction would look like if one had a supercompuer
+in their pocket and instead of saying "this is my computer, I can do
+whatever I want with it, and I've computed Pi to 4 billion digits to
+find your birth date in the string", we had "this is my phone (even
+though it is mostly not used for calling), it is an Orwellian spy
+device, that I can't live without, because despite not being able to
+control what it does, everyone is assumed to have one, and I'm refused
+service if I don't own one."
+</p>
+
+<p>
+In the 60s this would have been a concerning example, and a forewarning
+about what humanity might become, but in the spirit of the original Star
+Trek, William Shattner would have probably assuaged our concerns, by
+saying something profound about how humanity will simply be more
+efficient and that while it's possible, such a dark outcome is extremely
+unlikely.
+</p>
+
+<p>
+We live in that future now. What is infinitely worse, is that there is
+an army of proverbial philosophical zombies that not only don't value
+what they have never seen, and echo propaganda that states that is
+somehow "better".
+</p>
+
+<p>
+We have, as a species, eroded privacy and ownership, and the sole thing
+that made it all possible, is something mentioned by Mill:
+</p>
+
+<blockquote>
+<p>
+“Let not any one pacify his conscience by the delusion that he can do no
+harm if he takes no part, and forms no opinion. Bad men need nothing
+more to compass their ends, than that good men should look on and do
+nothing. He is not a good man who, without a protest, allows wrong to be
+committed in his name, and with the means which he helps to supply,
+because he will not trouble himself to use his mind on the subject.”
+</p>
+</blockquote>
+
+<p>
+But it is no longer inaction that is the problem. Far from it. The
+cartels have weaponised disinformation, and now the users who would
+simply not help, are actively echoing dangerous memes.
+</p>
+
+<p>
+An iPhone is not "more secure" because the manufacturer has resisted the
+temptation of selling your private data. If it were, "the fappening"
+wouldn't have been such a cultural phenomenon. Security by obscurity
+doesn't work, and the only thing preventing large scale problems from
+propagating and affecting everyone is precisely the ability to
+communicate about the subject matter freely.
+</p>
+
+<p>
+NVidida drivers do nothing other than protect the interests of a
+monopolist that wasn't allowed to acquire ARM precisely because it was a
+monopolist. It has no incentive to innovate, no real competition, and as
+a consequence, is not going to go bust if their drivers were halfway
+decent.
+</p>
+
+<p>
+Consider also that the source code of Windows Xp had leaked. None were
+able to benefit from the insights. None were able to modify Windows XP,
+which is used in a shocking number of applications, to work more
+reliably, and interoperate with Open Source tools more easily. ReactOS,
+the open source reimplementation can not use any of that knowledge. You
+could make an argument that Microsoft would lose a lot of potential
+revenue by making the leaked source code open source; the problem is
+that the amount of damage that not releasing is doing to the rest of the
+world is not taken into account.
+</p>
+
+<p>
+Suppose for a second that Microsoft has legitimate customers that are
+still using Windows XP. For example, the banks which prominently feature
+Windows XP-based ATMs. It is natural to give it a ballpark figure, of
+maybe Billions. Imagine how much damage can the leaked source code do,
+because the community of black hat hackers that don't have to abide by
+their rules and will laugh in the face of a DMCA take down notice can
+do? Really imagine it. Now imagine that this thing is used in all of the
+ATMs, <i>read <b>THINGS THAT DISPENSE YOU YOUR MONEY</b></i>, and the banks have
+either the choice of relying on Microsoft engineers doing the legwork
+and patching out all of the vulnerabilities, or sucking on a popsicle
+and hoping that the mess of C++ doesn't have any major vulnerabilities
+left.
+</p>
+
+<p>
+The alternative would have been simply rewriting the drivers for
+proprietary ATM hardware to work on Linux, or better yet, not having to
+rewrite anything, and instead using an Open Source version of Windows
+Xp, and simply relying on the fact that the small number of people that
+like Open Source and don't use Linux will patch it. You'd be surprised
+at how much more I like Windows than Linux, so you can definitely count
+one person in.
+</p>
+
+<p>
+So imagine a class action lawsuit by everyone whose bank uses a Windows
+Xp-based ATM, and the defence attorney for Microsoft arguing that an old
+outdated operating system that if kept proprietary can win them
+billions, should be kept proprietary, and potentially cause <i>trillions</i>
+in damages. And yes, <i>billions</i> is a conservative estimate, because I'd
+be surprised if Microsoft would have genuinely lost the interest in
+supporting that OS, and couldn't be only one of the contributors to the
+maintenance.
+</p>
+
+<p>
+Back to general computation, it's not easy to prototype our own hardware
+as the market changes and general compute chips are less available;
+while new SoCs appear all the time, they are often things which are too
+little too late, with firmware that would preclude them from being
+produced and consumed en-masse on an open source platform. Pine64
+doesn't use an old RockChip, because it thinks that that's a good bang
+for your buck. It's the only one that has a half decent, open source
+friendly firmware.
+</p>
+
+<p>
+Manufacturers are much less happy with the FPGAs being tinkered with
+outside of their IDEs; and FPGAs seem the last general compute platform
+you have control over, even if only hypothetically. This topic deserves
+its own article.
+</p>
+</div>
+</div>
+
+<div id="outline-container-conclusion" class="outline-2">
+<h2 id="conclusion"><span class="section-number-2">10.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-conclusion">
+<p>
+This is a long and rambly article with one key takeaway. You don't have
+to be open source, but you shouldn't be a dick about it.
+</p>
+
+<p>
+In general, if you want to make drivers better, consider the following
+good design chooices:
+</p>
+
+<ul class="org-ul">
+<li>There should be a DSL to describe the full hardwaere protocol, so you
+could write a driver even without access to source code for any other
+driver.</li>
+<li>There should be a complete specification for control over the latest
+USB, and PCI-e; and, importantly, a simplified version of the protocol
+that is convenient for slower, but no less important
+<a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a>,
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I²C</a>,
+<a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">SPI</a> and
+<a href="https://en.wikipedia.org/wiki/I%C2%B2S">I²S</a>.</li>
+<li>There should exist a <b>small and simple</b> compiler, that can turn the
+DSL and produce a default standards compliant implementation. Small
+and simple may be negotiable if the tradeoff is worth it, but
+oftentimes, the compiled driver should be introspectible, so that bugs
+can be fixed manually. If a pair of human eyes is necessary, you can
+assume that they can rewrite it in Rust too.</li>
+<li>For most devices, especially the USB and PCI-e ones, the driver
+specification may be a part of firmware that is transmitted on the
+device boot and is compiled inside the kernel. Such firmware should be
+easy to update by generic means.</li>
+</ul>
+
+<p>
+In principle the only thing that is missing, is that standards like USB,
+and PCI-express should be open. The problem with that is that they are
+often patent-laden and there are restrictions on what can and cannot be
+done with them. However, a similar, and perhaps more interesting
+alternative would be to simply replace those standards with open ones
+that don't have patent encumbrance, but we should be the first to
+acknowledge that is likely a pipe dream.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 16.01.2024</p>
+<p class="author">Author: Grid</p>
+<p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
+<p class="date">Created: 2024-05-11 Сб 22:04</p>
+</div>
+</body>
+</html>

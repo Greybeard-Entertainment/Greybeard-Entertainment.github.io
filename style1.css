@@ -1,0 +1,170 @@
+* {
+	background: transparent;
+	color: #eeeeee;
+}
+
+body {
+	background: #333333
+}
+
+.content {
+	column-width: 40em;
+}
+
+a {
+	color: #aaaaff;
+}
+
+.section-number-2, .section-number-3 {
+	text-align: right;
+	color: #aaaaaa;
+}
+
+.section-number-3 {
+	position: relative;
+	right: 0.2em;
+}
+
+h3 {
+	position: relative;
+	right: 0.3em
+}
+
+.title {
+	font-family: "IBM Plex Serif Thin";
+	font-size: 300%;
+	text-align: center;
+}
+
+.aside, .ASIDE {
+    font-family: "IBM Plex Mono";
+	font-size: 80%;
+	margin-left: 4em;
+	margin-right: 25%;
+	padding: 1em;
+	outline: solid;
+	outline-color: #00000033;
+	background: #00000015;
+}
+
+p {
+	font-family: "IBM Plex Sans";
+	text-align: justify;
+	margin-left: 2.9em;
+	margin-right: 2em;
+}
+
+h2, h3, h4, h5, h6 {
+	font-family: "IBM Plex Serif Thin";
+	margin-left: 0.8em
+}
+
+#table-of-contents{
+	margin: 1em;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	padding: 1em;
+	background: #333333ee;
+}
+
+#table-of-contents > h2 {
+	background: transparent;
+	color: #aaaaaa;
+}
+
+#text-table-of-contents a {
+	color: #999999;
+}
+
+.example {
+	font-family: "Ubuntu Mono";
+	margin-left: 3em;
+	padding-left: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-right: 2em;
+	background: #222222;
+}
+
+img {
+	max-width: 38em;
+}
+
+
+blockquote {
+	font-family: "Ubuntu"
+	max-width: 40em;
+	line-height: 1.4;
+	position: relative;
+	margin: 0;
+	padding: 1em;
+}
+
+blockquote:before,
+blockquote:after {
+	position: absolute;
+	color: #ffffff33;
+	font-size: 5rem;
+	width: 4rem;
+	height: 4rem;
+}
+
+blockquote:before {
+	content: '\201C';
+	font-family: "IBM Plex Serif";
+	top: -1rem;
+}
+
+blockquote:after {
+	content: '\201D';
+	font-family: "IBM Plex Serif";
+	bottom: -1rem;
+	left: 39rem;
+}
+
+.org-src-container {
+	font-family: "Ubuntu Mono";
+	margin-left: 3em;
+	padding-left: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-right: 2em;
+	background: #222222;
+}
+
+.org-src-container pre {
+	margin-top: 2em;
+	margin-right: 2em;
+}
+
+.org-src-container pre.src-sh:before {
+	content: "POSIX shell script\A";
+	font-family: "IBM Plex Mono";
+	font-size: 60%;
+	color: #ffffff;
+	margin-top: -3em;
+	padding: -1em;
+	position: relative;
+	top: -2em
+}
+
+.footnotes:before {
+	content: "\1F4DA";
+	margin-right: 0.1em;
+	position: relative;
+}
+
+.footnotes {
+	color: #aaaaaa;
+}
+
+.footpara p {
+	margin-top: -1.5em;
+}
+
+.footnum {
+	font-weight: bold;
+	position: relative;
+	right: -2em;
+}

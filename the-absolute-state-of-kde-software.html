@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-05-11 Сб 22:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The absolute state of KDE software</title>
+<meta name="author" content="Aleksandr Petrosyan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">The absolute state of KDE software</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge50b37c">1. The (un)fortunate Kool Desktop Environment, a historical overview</a></li>
+<li><a href="#org081b4e6">2. Popularity troubleshooting</a>
+<ul>
+<li><a href="#org1822683">2.1. Weird release schedule</a></li>
+<li><a href="#org3920ac9">2.2. Phenotypal variability</a></li>
+</ul>
+</li>
+<li><a href="#org3a19e25">3. KDE programs</a>
+<ul>
+<li><a href="#org2d528a4">3.1. Kate</a></li>
+<li><a href="#org4eb5683">3.2. Elisa</a></li>
+<li><a href="#orgf034b67">3.3. Discover</a></li>
+<li><a href="#orgfe83a7a">3.4. The Calligra Office Suite</a></li>
+<li><a href="#orgd78ab4e">3.5. LaTex, iPython, Inkscape</a></li>
+<li><a href="#orgaf3d2ef">3.6. Ktorrent</a></li>
+<li><a href="#org5c72f76">3.7. Kmail and Merkuro</a></li>
+<li><a href="#org093a4fa">3.8. Browsers</a></li>
+<li><a href="#org8f816ba">3.9. Dolphin</a></li>
+</ul>
+</li>
+<li><a href="#org4bb2906">4. Final thoughts</a></li>
+</ul>
+</div>
+</div>
+<p>
+I am an avid user of KDE.  One of the main reasons I like it, is because it is built around the idea of user customization.  I do not know to what extent is this owed to the complete and utter takeover of Gnome by corporate interests, but it is, by far, the only polished desktop environment that does so (XFCE and LXDE/LXQT lacking in polish).
+</p>
+
+<p>
+However, the KDE project is massive and some parts of it have not seen a good amount of elbow grease in a while. Rather than bash the engineers that are already doing a spot-on job and in many ways exceed even the most humble of my expectations, I'd rather use this to answer some questions that most people might have, and try to assuage some of the concerns about the project's health.
+</p>
+<div id="outline-container-orge50b37c" class="outline-2">
+<h2 id="orge50b37c"><span class="section-number-2">1.</span> The (un)fortunate Kool Desktop Environment, a historical overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The reason it's called KDE to this day, and has an obsession with a letter that entered latin through greek transcriptions, is very simple.  There used to be a Common Desktop environment and KDE was its counterpart.
+</p>
+
+<p>
+KDE used to be the only game in town.  That didn't mean that everything was written in Qt back in the day, many of the programs didn't even have the concept of a toolkit, instead opting for using the X11 primitives directly.
+There are some programs that do it to this day, but they also have a habit of being very obvious and rather unpolished, which is why it is not the default and modern programmers try to avoid using that (plus, there's a substantial amount of extra work involved, and Wayland has no such thing).
+</p>
+
+<p>
+So at one point, KDE had the option of being proprietary, which (for obvious reasons) didn't go well with the GNU/Linux community.  As a backlash-lash, the GNu Object Model Environment was invented, using the GIMP toolkit; or rather Gnome was built using GTK.  After that point Qt and KDE have become very much so on the side of Free Software, but the damage was likely already done.
+</p>
+
+<div class="aside" id="org0156883">
+<p>
+This is in no way problematic.  In fact, this is the way <i>many</i> programs go today, and while it is sad that they do, we are sympathetic to the reason for why they do it; the open source software model that which itself is a much milder version of the Free Software Model lacks an effective monetisation scheme under modern day capitalism.  We are sympathetic to the fact that a lot of people are good at their job and want to get paid for it, so as a result, we can't exactly blame KDE for attempting to be proprietary.
+</p>
+
+</div>
+
+<p>
+Aside from reputational problems, Gnome, for a while at least, had feature parity with KDE, whilst differentiating itself from Windows sufficiently to entice people to try it.  My first brush with GNU/Linux, Mandriva Linux had either the KDE or Gnome options.  The best way to describe KDE, and something which immediately turned me away from the idea of using Mandriva, was that it was a facsimile of the default Windows shell.  And while the decription to me today sounds incredibly reductive, here's why it's accurate: you cannot communicate the feel of something, or take a snapshot of all possible extensions via video or screenshot.  Most software projects don't even have screenshots anymore.  So one can be forgiven for looking at a screenshot of plasma and saying it looks exactly like Windows: one single taskbar facsimile at the bottom, which replicates the features all the way down to defaulting to left aligned iconic representations, no virtual desktops by default, a "start" menu on the left, and the familiar tray + clock on the right.  Still, this is not very representative of the philosophy.  In Jonathan Blow's words, "they (open source projects) don't do anything creative.  They only imitate." But that is not what KDE is doing, despite it appearing to be so.  More on that later.
+</p>
+
+<p>
+Whatever one's opinion, KDE was almost always seen as a Windows-like DE to outsiders.
+</p>
+
+<p>
+With the release of KDE 4, and KDE surpassing Windows in terms of transparent elements in the UI, KDE became known as the buggy desktop environment.  And for good reason.  KDE 4 was a massive step in a different direction.  That step necessitated a large amount of code to be changed, as a result, a lot of bugs were implemented.  I did not like KDE at that time, which was painful given the potential of both this toolkit and DE.
+</p>
+
+<p>
+KDE was the project that almost always had something not quite right with it, leading to many people rightfully accepting the conensus opinion that it was just not worth it.  But that does not in any way shape or form represent KDE.
+</p>
+
+<p>
+This project is far more interesting than we give it credit for, much too ambitious for its own good, and in many areas surprisingly polished.  This project deserves more love than it gets, but also a bit more guidance than it would care to admit.  But first, have you ever wondered why KDE isn't as widely used?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org081b4e6" class="outline-2">
+<h2 id="org081b4e6"><span class="section-number-2">2.</span> Popularity troubleshooting</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We do not know why some people choose one thing over others.  I'm quite surprised that I like KDE more than I like many other DE/WM pairings.  It is irrational and relies on things that I would consider &#x2026;  harmful&#x2026;  in general.  But I digress.  While we cannot give a decisive diagnosis for the lack of popularity of KDE, we can make quite extensive educated precision guesswork, and give the reader a somewhat different take.
+</p>
+</div>
+
+<div id="outline-container-org1822683" class="outline-3">
+<h3 id="org1822683"><span class="section-number-3">2.1.</span> Weird release schedule</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Let's get this one out of the way first.  This is probably something that will be on many readers' minds right now, given that it was just given as a reason for why <i>e.g.</i> OpenSuse doesn't ship KDE projects.
+</p>
+
+<p>
+Simply put, there's no fixed cadence for KDE projects.  KDE Gear comes out at a different time to the KDE system.  So if you ship both, you have shall we say some head-scratching to do.  Instead of having one "sure-thing" go-to solution, you have multiple compromises that offer different trade-offs.
+</p>
+
+<p>
+The simplest one of those is to go with a rolling release.  There are multiple successful projects that do things that way.  Arch Linux would be on everyone's mind, but there's also OpenSuse Tumbleweed (this will be important), Gentoo, Debian, Void linux, just to name a few.   For a rolling release, the staggering of major changes is a huge boon, as instead of having all of the edge cases popping up all at once during the major changeover, you get two relatively smaller blips on your radar.  Of course, no matter what the Arch-bros would tell you, the fixed-schedule release distributions cannot just go rolling-release.  This requires an inordinate amount of skill and architectural foresight to execute correctly, and unfortunately this kind of thing would be impossible to do in an environment where packages need to be patched before entering the distribution repositories.
+</p>
+
+<p>
+So then we have the compromise solutions; on the one hand, we could wait until both gear and plasma have released.  In that case, the release window gets pushed uncomfortably forward, but April - October release cadence worked well for Ubuntu, and Kubuntu, and KDE Neon don't seem to have much of an issue.  The second option is to squeeze into the middle of the release of gear and plasma, having one outdated compared to the other.  At this point one also has the option of adding in the newly changed pacakges into the fixed-release cadence.  This might work out really well.  In my experience with Fedora 16 with KDE, it was anything but.  As I said, a rolling release requires quite a different set of skills and Red Hat didnd't seem to possess them at the time.  Given how OpenSUSE (and SUSE in general) are linked to RHEL, I'd wager that the problems are similar, though mitigated by their experience working on Tumbleweed.
+</p>
+
+<p>
+Then there's some options for which the release cadence is irrelevant: Debian holds back packages by a significant amount of time.  As a consequence there's significantly fewer unknown unknowns, namely the interactions between the packages.
+</p>
+
+<p>
+Now, all of these options are limiting.  Most good architectures are.  I can see some distributions giving KDE a hard pass, but I don't think that this explains the fact that of the mainline distributions almost none ship KDE by default and almost all ship Gnome.
+</p>
+
+<p>
+No we need to dig deeper.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3920ac9" class="outline-3">
+<h3 id="org3920ac9"><span class="section-number-3">2.2.</span> Phenotypal variability</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+KDE packages are not inert.  When they get installed, they can express in a myriad of ways.  In fact, this is one of the main ways in which KDE is different from many other Desktop Environments; it allows an unbounded array of customisations.
+</p>
+
+<p>
+So why is this relevant?
+</p>
+
+<p>
+Many desktop operating systems, including Mac OS and Windows have dialed back their customisation options.  In fact Gnome itself has undergone a similar transformation; Gnome 2 was a lot more customisable, and to an extent simpler system, where one could lock down dangerous components, and simultaneously ensure that an engineer trained on working with one version of the environment could work on another no matter how different the two machines.
+</p>
+
+<p>
+Theoretically, this would mean that anything related to customisation has an evolutionary pressure.  If your standard workstations run KDE, how can you ensure that your users don't utterly destroy the UI? How do you ensure that all your engineers know how to use this tool in all the possible forms that it can take? Well, it's usually simpler  to limit the forms in which your UI can appear, to hide the problematic knobs to ensure that the users do not customise their workstation, and so that all workstations, save for colours and things which do not affect navigation and don't sacrifice on accessibility, are all exactly the same.
+</p>
+
+<p>
+This means that there would be a convergence on a single Desktop that has reasonable defaults (Gnome), good accessibility (Gnome), discourages customisation (Gnome), has a reliable developer (Gnome), a reasonable test coverage (Gnome), and finally, a strong sense of loyalty to corporate vision (Gnome).  You see, any form of self expression is yet another variable that makes the business calculus problematic.  So any distribution that is aimed at providing an operating environment for a business, will itself try to limit the variability.  With me so far.
+</p>
+
+<p>
+While this theory would explain simply why Gnome has a strong advantage in the enterprise space, it does not mean, and probably should not mean, that it cannot be dethroned.  On the contrary, Gnome has made a significant number of mistakes, that KDE has not yet capitalised on, but could.
+</p>
+
+<p>
+Gnome has an unstable UI, so Gnome 3 and Gnome 40 series are almost completely different, negating the advantage of lack of customisation.
+</p>
+
+<p>
+Gnome has an unstable extension API, so workstations cannot be uniformly modified.  Their defaults are fixed, but anything beyond that is not guaranteed to be.  At the same time, extensions cannot be all guaranteed to always work all the time.
+</p>
+
+<p>
+Next Gnome doesn't have a robust understanding of "sane defaults".  In fact, other than tiling Window Managers (which are ironically very similar to each other), Gnome is perhaps the maximally unfamiliar desktop environment for most users of primarily Microsoft Windows.
+</p>
+
+<p>
+Gnome has shoddy code quality.   And I don't mean in the subjective aesthetic sense of "I don't like the Gnome code base", I mean in the sense of having bugs, not implementing common APIs, implementing them too late and implementing them poorly.  This problem can sometimes backfire in Gnome's favour, like for example, when instead of using <code>xdg-desktop-portals</code> the spyware <code>zoom</code> implemented screen capture via the Gnome screenshot D-Bus api.  This gave Gnome a temporary advantage, in the sense that there was a time during which only Gnome's Wayland session had support from mainline proprietary meeting applications.  This is also why some large Open Source projects tend to put Gnome support at the bottom of their list.
+</p>
+
+<p>
+So what can KDE learn from this?
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org945775e"></a>Lesson 1:<br />
+<div class="outline-text-5" id="text-2-2-0-1">
+<p>
+Keep defaults reasonable.  This is probably already covered by the excellent work done by most of the team, (most being the active word here, because for example Discover doesn't exactly explain why it cannot install thing on Asahi Linux).  KDE, despite having every opportunity to do so, has done the smart thing and stuck to an extremely familiar layout.
+</p>
+</div>
+</li>
+
+<li><a id="org79abe77"></a>Lesson 2:<br />
+<div class="outline-text-5" id="text-2-2-0-2">
+<p>
+Have good accessibility.  This is covered well, but not completely.  Most KDE and Breeze applications are supremely legible.  I would argue that they are sometimes too legible, resulting in the UI elements being a tad too distracting, but in many other ways, this is a positive.  While it lacks a dedicated mode for accessibility, I would argue that this is perhaps a hallmark of good design.
+</p>
+</div>
+</li>
+
+<li><a id="org2c09c99"></a>Lesson 3:<br />
+<div class="outline-text-5" id="text-2-2-0-3">
+<p>
+Get reliable backers.  This is historically problematic.  Fortunately, the baseline toolkit &#x2013; qt, is not maintained by KDE exclusively, so the maintenance burden is reduced to just the frameworks, and the destkop.  However, this does not mean that having a reliable foundation that encourages, nay demands, proper attention to all of the projects in the KDE ecosystem to flourish.
+</p>
+</div>
+</li>
+
+<li><a id="org21a3ff2"></a>Lesson 4:<br />
+<div class="outline-text-5" id="text-2-2-0-4">
+<p>
+Be reliable.  KDE 4 was a disaster.  KDE 5 was not.  What is encouraging is that KDE 6 is going to be a similarly stable release, despite having to necessarily make a significant transition.  I would argue that this is perhaps not difficult to do, but you have to remember that KDE has many more projects that can fit on one's page.  I cannot list all of them from memory and often have to look up the spellings for things that I would like to thing that I know.
+</p>
+</div>
+</li>
+
+<li><a id="org5f0c4e3"></a>Lesson 5:<br />
+<div class="outline-text-5" id="text-2-2-0-5">
+<p>
+Have good tests.  And I would argue that the difficulty with which one would report a problem is part of the reason why the applications are problematic in situations in which they shouldn't be.
+</p>
+</div>
+</li>
+
+<li><a id="orgd3ca6dc"></a>Lesson 6:<br />
+<div class="outline-text-5" id="text-2-2-0-6">
+<p>
+Keep your UI stable.  While it is true that users are not meant to customise their KDE setups, it's only really a problem, if it were impossible to use the machine with those customisations.  While it would make it difficult to debug user-specific problems, the sheer possibility of seeing which settings have been modified allows one to quickly reset some of the settings to their defaults and expect the desktop to follow suit.
+</p>
+
+<p>
+So while this entails more manipulations than not having to do anything at all, the sheer fact that KDE has remained pretty much unchanged since KDE 4.0, while Gnome has undergone two major revisions in the same time frame speaks volumes to the potential of it as a platform.  Besides if standardisation is <i>so</i> important to you, just forbid your people from customising anything.  Maybe a button to lock the layout was problematic before, but I see no reason why it cannot be a global setting.
+</p>
+</div>
+</li>
+
+<li><a id="org7f0c443"></a>Lesson 7:<br />
+<div class="outline-text-5" id="text-2-2-0-7">
+<p>
+Know your extensions and make sure that they work.
+</p>
+
+<p>
+My favourite <code>bismuth</code> is unmaintained.  <code>Latte Dock</code> is unmaintained also.  While there are replacement plugins for <code>bismuth</code> known as <code>polonium</code> that interacts more tightly with the newly introduced manual tiling subsystem, I cannot stress enough how important it is to keep one's extensions in a healthy state.
+</p>
+
+<p>
+KDE has much room for improvement, because at this point, anything that goes even slightly beyond the defaults is borderling unuseable.
+</p>
+</div>
+</li>
+
+<li><a id="orgbcfe90e"></a>Lesson 8:<br />
+<div class="outline-text-5" id="text-2-2-0-8">
+<p>
+Implement things well and on-time.
+</p>
+
+<p>
+Probably the best thing for KDE to learn from is how not to do Wayland from the perspective of Gnome.   Many of the points in the famous "Wayland breaks everything", can be traced back to things that only Gnome breaks today.  If KDE were to be the other standout, it would be embarrassing.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-org3a19e25" class="outline-2">
+<h2 id="org3a19e25"><span class="section-number-2">3.</span> KDE programs</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Another issue that KDE faces is related to the awkward position that KDE programs find themselves in.  Simply put these programs don't get nearly as much love as they deserve.  And some don't get nearly as much attention.
+</p>
+</div>
+
+<div id="outline-container-org2d528a4" class="outline-3">
+<h3 id="org2d528a4"><span class="section-number-3">3.1.</span> Kate</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+This is a program that I have no issues on a technical level with.  It is perhaps the best code editor that doesn't use a turing-complete language for configuration.
+</p>
+
+<p>
+It works out of the box.  It uses a reliable syntax highlighting system.  It interfaces with language servers out of the box, and handles them in the best possible way.
+</p>
+
+<p>
+The only bad things I can say about Kate relate to the plugins.  They are not the kinds of plugins I would expect from KDE software; there's no page on <code>kde-look.org</code> that contains a billion plugins, nor is there a way to get more than the ones that came with it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">&#10095; paru -Ss kate
+extra/haskell-cheapskate 0.1.1.2-621 [357.12 KiB 2.02 MiB]
+        Experimental markdown processor.
+extra/kate 23.08.4-1 [9.41 MiB 30.25 MiB] [Installed] (kde-applications kde-utilities)
+        Advanced text editor
+extra/libkate 0.4.1-9 [115.50 KiB 331.43 KiB] [Installed]
+        A karaoke and text codec for embedding<span style="font-weight: bold;"> in</span> ogg
+extra/libkate-docs 0.4.1-9 [153.52 KiB 1.86 MiB]
+        A karaoke and text codec for embedding<span style="font-weight: bold;"> in</span> ogg - developer documentation
+extra/libtiger 0.3.4-7 [24.22 KiB 63.10 KiB]
+        A rendering library for Kate streams using Pango and Cairo
+extra/skate 0.2.2-1 [6.16 MiB 19.53 MiB]
+        A personal key value store
+extra/ttf-iosevkaterm-nerd 3.1.1-1 [59.17 MiB 731.54 MiB] (nerd-fonts)
+        Patched font Iosevka Term from nerd fonts library
+aur/ttf-cheapskate 2.0-20 [+12 ~0.00]
+        TTF Fonts by Dustin Norlander
+aur/kate-git 21.07.70_r17988.g3d0d58325-1 [+6 ~0.00] [Out-of-date: 2023-10-21] [Orphaned]
+        Advanced Text Editor
+aur/lib32-libkate 0.4.1-6 [+5 ~0.00]
+        A karaoke and text codec for embedding<span style="font-weight: bold;"> in</span> ogg (32-bit)
+aur/kate-root 23.08.4-1 [+1 ~0.16]
+        Advanced Text Editor from the KDE project, patched to be able to run as root.
+aur/kate-wakatime-git 1.3.10.r1.g3c03b34-1 [+1 ~0.00]
+        Kate plugin to interface with WakaTime
+aur/katex 0.16.9-1 [+1 ~0.00]
+        Fast math typesetting for the web
+aur/libkate-python3-git 0.4.1-6 [+1 ~0.00]
+        A karaoke and text codec for embedding<span style="font-weight: bold;"> in</span> ogg. With fixes and port to Python 3 of before broken KateDJ.
+aur/olliolli-hib 1414459118-1 [+1 ~0.00]
+        2D skateboard plateformer
+aur/python-sphinxcontrib-katex 0.9.9-1 [+1 ~0.00]
+        A Sphinx extension for rendering math<span style="font-weight: bold;"> in</span> HTML pages
+aur/kate-indexview-plugin 0.9.1-1 [+0 ~0.00]
+        A fork from Kate<span style="font-style: italic;">'s SymbolViewer plugin with a couple of improvements</span>
+<span style="font-style: italic;">aur/katex-dist-bin 0.16.8-1 [+0 ~0.00]</span>
+<span style="font-style: italic;">        Fast math typesetting for the web</span>
+<span style="font-style: italic;">aur/libkate-git 0.4.1-6 [+0 ~0.00]</span>
+<span style="font-style: italic;">        A karaoke and text codec for embedding in ogg. Without broken KateDJ and Python2.</span>
+<span style="font-style: italic;">aur/mdbook-katex 0.5.9-1 [+0 ~0.00]</span>
+<span style="font-style: italic;">        A preprocessor for mdbook to render LaTeX equations in HTML</span>
+<span style="font-style: italic;">aur/mingw-w64-libkate 0.4.1-2 [+0 ~0.00]</span>
+<span style="font-style: italic;">        A karaoke and text codec for embedding in ogg (mingw-w64)</span>
+<span style="font-style: italic;">aur/otf-gt40 2021-1 [+0 ~0.00]</span>
+<span style="font-style: italic;">        A free recreation of the GT 40 Mono Font by Kate Willaert</span>
+<span style="font-style: italic;">aur/pandoc-static-katex-git latest-2 [+0 ~0.00] [Orphaned]</span>
+<span style="font-style: italic;">        A simple pandoc filter that uses KaTeX to render math equations at build time.</span>
+<span style="font-style: italic;">aur/qilin-bin 0.4.0.alpha-2 [+0 ~0.00] [Orphaned]</span>
+<span style="font-style: italic;">        Fully hackable text editor developed for exact sciences with built-in KaTeX and AsciiMath support</span>
+<span style="font-style: italic;">aur/skate-git 0.2.0.r9.g693df1f-1 [+0 ~0.00]</span>
+<span style="font-style: italic;">        A personal key value store</span>
+<span style="font-style: italic;">aur/skate-ipsum-bin 0.0.13-1 [+0 ~0.00]</span>
+<span style="font-style: italic;">        Skate Ipsum is a tool for generating random skateboarding related text.</span>
+</pre>
+</div>
+
+
+<p>
+Look, there isn't much here.
+</p>
+
+<p>
+So there are two lessons here for the price of one:
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgcd772dd"></a>Lesson 9:<br />
+<div class="outline-text-5" id="text-3-1-0-1">
+<p>
+Play to your strengths.
+</p>
+
+<p>
+Kate is an excellent polished editor.  But it doesn't have many plugins, it doesn't have many materials on writing plugins, and there are no good integrated stores for plugins as of writing.  This is probably why Kate is the way it is; a polished editor, but I would wager it needs more support.
+</p>
+
+<p>
+What could have helped is perhaps a plugin definition language that allowed plguins to remain compatible for longer.   If Kate were a tidier code-base I would have forked it, and added the support myself, but unfortunately, keeping up with the KDE libraries is itself a monumental task.  So unless the changes I want to make are upstream-able, there's no chance of it happening.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-org4eb5683" class="outline-3">
+<h3 id="org4eb5683"><span class="section-number-3">3.2.</span> Elisa</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The player is fine I guess.
+</p>
+
+<p>
+In terms of sound quality I still prefer Audacious, even though from the UI perspective Elisa seems to have a tiny advantage.  But I would not say under any circumstances that Elisa is a good player, given that it pulls in VLC, and cannot work without it, I wonder what exactly is it that Elisa is other than a skin around the VLC libraries (which, no offence to VideoLan, is probably why the sound quality is not-so-great).
+</p>
+
+<p>
+Compare this to Lollypop.  This player is, for lack of a better term, magnificent.  It depends on <code>gstreamer</code> which in my humble opinion sounds slightly (but only slightly) better than VLC.  But unlike Elisa it doesn't require me to pull in an entire graphical application to do the heavy lifting.  Also, I wouldn't go so far as to say that it makes the music not hit.  I'd go so far as to say that it sounds better than <code>mpv</code> in most cases.
+</p>
+
+<p>
+But the difference is there, and it is noticeable; when I play a track in Elisa, yeah sure, I can appreciate the structure and relationship of the notes to each other.  But I cannot, for example "feel" the music.  Both players are incomparable to <code>audacious</code> in that respect, which is superior to both, even before you get into the weeds with all of the possible sound processing plugins that it ships with by default.
+</p>
+
+<p>
+Secondly, the organisation of things into a single list with all albums visible at once, and being able to play them, is &#x2026;  an organisation choice.  I would expect that Elisa does things differently for reasons of trying to facilitate a playlist-centric, rather than album-centric listening experience.  But I'd argue that enforcing a paradigm is a very Gnome thing to do.  I cannot turn Elisa into an album-centric player like I could with <code>clementine</code> or <code>Amarok</code>.
+</p>
+
+<p>
+While I would be the first person to criticise Amarok (coming from FooBar2000 on Windows), I think that Elisa is a step backwards.  At least with Amarok I had the option to choose the phonon backend, which would have let me use GStreamer.  I don't have that same luxury with Elisa.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org81e81d8"></a>Lesson 10:<br />
+<div class="outline-text-5" id="text-3-2-0-1">
+<p>
+Don't play to your weaknesses.
+</p>
+
+<p>
+The major problems with Elisa come down to it trying to be what it definitely isn't.  Like, consider for a second that Lollypop has more UI elements, more flexibility and more options than Elisa.  Elisa is not a prototypical KDE program and it shows.  It has none of the convenience that I would expect from KDE.
+</p>
+
+<p>
+Add some plugins, make the UI customisable, maybe even allow the users to change it.  Maybe just maybe consider a different sound backend.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orgf034b67" class="outline-3">
+<h3 id="orgf034b67"><span class="section-number-3">3.3.</span> Discover</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+This is probably the only program in KDE that I outright hate.
+</p>
+
+<p>
+One of the main reasons for this, is that it has many misguided decisions laid at the heart of its architecture.  Pamac, for all its faults, was a package manager I was comfortable with.  The Muon package manager, brief though its existence was in the Kubuntu flavours, was better.  Hell, I would go down as to say that despite the complete ineptitude of <code>apt</code>, the only thing that made it palatable was <code>synaptic-package-manager</code>.
+</p>
+
+<p>
+And this is a key point.  The whole reason for the existence of software management front-ends, is that they allow one to do more precise operations with their package registries.  The same I'm afraid is not true of Discover.  Half the time, I don't know if it genuinely has no updates, or that it does, but those updates couldn't be displayed for a reason of which Discover is aware of, but does not show.
+</p>
+
+<p>
+But let's assume that everything works, and the problems are related to the somewhat esoteric set up that I have.  What is the design of the program?
+</p>
+
+<p>
+From a purely marketing perspective, it does a terrible job.  Everything is kinda cramped, there are cards which show (at best) a single icon.  I assume that nobody is aware of the concept of screenshots, but that is far from the only problem.
+</p>
+
+<p>
+There's no separation between GUI programs and system utilities.  So I cannot go into discover and install <code>git</code>.  I can, fortunately install something that accidentally pulls in <code>git</code> as a dependency, but this is not something that would ease a younger prospective programmer.  Similarly, I cannot remove <code>git</code>.  For some insane reason, even though I have plenty of pacakges with <code>git</code> in the name, the only thing that I can remove is a digital clock.  Or rather I would be, if it wasn't installed with, I don't know, <code>plasma-meta</code>, which means that the naive dependency resolution method will try to uninstall everything for which this package is technically a dependency.  And I get it, different pacakge managers do things differently.  But I would like some more information other than "dependency resolution failed".  I understand that this is probably due to the fact that you are trying to support too many package managers, but that only counts as a valid reason if you actually supported anything other than vanilla binary pacakge managers.
+</p>
+
+<p>
+Discover doe not allow me to add a new pacakge repository.  Thankfully on something like Arch Linux, you should realistically have no more than four, and avoid things like <code>chaotic-aur</code> like the flame, in favour of an AUR helper.  At the same time, I am able to install Flatpaks and Snaps, and they are given first-party support, despite being glorified <code>yum</code> and <code>apt</code> for people who don't know how to statically link.  One thing I would have appreciated is first-party support for AppImages, but there isn't any.  <code>nix</code> and <code>guix</code>? No luck.  So Discover, doesn't nearly have the coverage it needs to justify abstracting away valuable (I'd argue <i>the most</i> valuable) information a package manager can provide.
+</p>
+
+<p>
+So maybe the UI is good for GUI programs.  Unfortunately the no-form-no-function genie struck here again.  Firstly, almost none of the pages communicate what a program actually does.  Because there's no way of seeing a screenshot before clicking on the description.  If the blurb doesn't entice you, you will not find out.
+</p>
+
+<p>
+Secondly, there's no way of marking several applications for installation.  You can only add them to a live queue.  This is OK-ish, most modern package managers can cope with that.  But it is something that a professional would like.  The reason is, that sometimes you cannot remove one package, because it's a depedency for another package, but if you try to remove both, you would be able to mark them both and dependency resolution passes.  This minor tweak to the UI would save the user from having to know ahead of time which package depends on which application (oh and Discover does show you libraries and applications, just not consistently).
+</p>
+
+<p>
+I can't sort by modification or upload date, I can't group by repository availability, I can't sort by installed size.  The only things I get in return for it being a graphical application is the ability to stare at the window, and realise how much space is being wasted drawing lines that don't help.  And it's oftentimes faster for me to pull up a terminal and type in <code>pacman -S kate</code> than it is to do so inside of discover.
+</p>
+
+<p>
+Plus, I don't know whose brilliant idea it was, KDE plasma widgets appear in Discover in addition to regular packages.  But for some reason things like <code>pip</code> packages, <code>cargo</code> packages and many other useful packages don't.
+</p>
+
+<p>
+What the FUCK ARE YOU TRYING TO MAKE DISCOVER DO?!  Not only do I not get what its use case is meant to be (given that it asks the user to set up appstream, instead of doing it for them), I doubt that it has a use case that is not overshadowed by a distribution-specific graphical application that handles package management.
+</p>
+
+<p>
+And we have good choices.  On Arch alone, there's <code>pamac</code> and <code>octopi</code> that while having rough edges (something that can be fixed) also have a clear goal and cover both professional (<i>i.e.</i> tech-savvy) and newbie use cases.  It has a similarly useless set of cards, but at least I can tell at a  glance which of the packages can be installed and which can be removed.  It also comes with the nice feature of supporting the AUR, and showing me just the packages; all of the packages at once.  And <code>pamac</code> is an under-developed piece of shit.
+</p>
+
+<p>
+I can at least mark several pacakges at once, which allowed me to uninstall <code>edwood</code> and <code>acme</code>.  It gave me a clear error message for why I couldn't remove just <code>acme</code> and I could remove <code>git</code>, because at the very least it showed up in my search.  If an application developed by people who <i>forget to renew an SSL certificate</i> does better than you in the first 15 minutes of systems administration, then you know that you've done something badly.
+</p>
+
+<p>
+And if you want a positive example; take <code>synaptic</code> or <code>octopi</code>.  Those programs are reliable, well-made if a bit ugly.  They might not have form (Discover doesn't either), but at the very least they have function.  And function they do! I have a list that I can sort and filter by whatever I like, I have the option to enqueue many operations, and it does what I need it to do, whenever I tell it to remove a specific package.  It's just plain better.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org50925ef"></a>Lesson 11:<br />
+<div class="outline-text-5" id="text-3-3-0-1">
+<p>
+Kill it with fire.  Rise from the ashes.
+</p>
+
+<p>
+Some projects are too far gone to be salvageable.  Given that Discover sticks out on KDE like a sore thumb, just disowning the project and stopping pouring even more resources into it is a good idea.
+</p>
+
+<p>
+This is perhaps a little inflamatory, but hear me out.  Most GNU Linux distributions are capable enough to produce a package manager.  Why aren't they equally capable of producing a package manager based off of a common set of libraries? Turn Discover into a set of UI libraries that can be tacked onto an existing package infrastructure.  While package managers aren't obliged to have a stable ABI, encourage projects to fork Discover and do something with it.  As an added benefit, this would allow the package manager-specific configurations to exist somewhere, and not be chopped off by something like <code>packagekit</code> or <code>appstream</code>.  Link statically instead of dynamically.  Take edge cases into account and make each instance of Discover its own thing that exists within the framework of the rest of the packaging system.
+</p>
+
+<p>
+There's <b>very</b> good reasons to do it this way, not least of which, that the only package managers that feel "at home" when used with Discover are precisely the ones that could be added as direct dependencies, and that could report domain-specific errors without an unnecessary level of abstraction.  It might seem that I'm arguing minimalism, but that extra level of abstractions means the difference between an error message with a clear set of steps to fix, and an unintelligible mess that <b>can't</b> be fixed.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgfe83a7a" class="outline-3">
+<h3 id="orgfe83a7a"><span class="section-number-3">3.4.</span> The Calligra Office Suite</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+I'm lumping all of the programs together, because my comments probably pertain to all of them at once.
+</p>
+
+<p>
+Creating an office suite, especially on Linux, and especially in an environment wherein any difference from Micro$oft Office are heavily suppressed, is difficult.  Plus, most of the time, even though Microsoft can afford millions in development costs, and probably doesn't need to, while simultaneously extracting huge profits, LibreOffice <i>et al</i> are all fundamentally working on a shoestring budget.  They are not celebrated for their achievements, but shunned for losing in an unfair competition.
+</p>
+
+<p>
+Sure one could make the argument that GNU Linux itself is fighting a similarly uphill battle, but at the same time, consider that the vast majority of people that use windows, have very good reasons to do so.  They have very good reasons to continue using Windows and unlikely to switch unless there's a very good reason to switch.  And with Microsoft Office, because it is meant as a medium of exchange, and one cannot individually decide not to use Microsoft Office and expect there to be no repercussions, there is a lot less good will.
+</p>
+
+<p>
+So I would say that the office suite has potential but is miles behind anything even remotely comparable.  Make no mistake, I would use a decent office suite over LaTeX any day of the week, especially if it had a well-defined domain-specific language that defined the document.  Incidentally <code>lyx</code> is perhaps what I would have liked the industry to move towards&#x2026;  but that program has its own issues, and they need to be touched upon separately.
+</p>
+
+<p>
+So what can I say? They do not reproduce documents reliably.  This is a dealbreaker, and something that <b>shouldn't</b> but has still happened with the open XML-based formats.  When MS office was moving away from a binary format, towards an extensible plaintext format (which is kinda dumb), the world was dominated by XML.  Nowadays the world has moved on to JSON, and writing a document processor based on JSON is something even a mediocre JavaScript kiddie can do in a matter of hours.  At the same time, LibreOffice and many of its brethren still rely  on XML and at that, fail to reproduce the open document formats reliably.  And that means that a document written in LibreOffice cannot be relied upon to be accurately represented in the respective KDE office application (which shall not be named).  This is not acceptable and something that must be fixed eventually.  At the time of writing, however, given the apathy towards office formats that are not Google Docs, it's unlikely to happen.
+</p>
+
+<p>
+Calligra words (OK I lied), is a fine application that is basically useless.  It's not fun to interact with and the kinds of people that keep Emacs and Vim alive, are not going to spend hours of their life fixing the problems inherent in an XML-based document format.
+</p>
+
+<p>
+Spreadsheets? This is slightly different.  Only <i>slightly</i>, because there seems to be consensus that the cell-based accounting system that is inherent in spreadsheets is not a great solution long-term.   Do you know of many accounting firms that use Excel directly and if you did, would you trust them? More importantly, the data is often either shared in a format in which the spreadsheet is irrelevant (<i>e.g.</i> CSV) or in which accurate data reproduction with its limitations is paramount.  Believe it or not, there are good reasons to believe that some of the NHS is still running on the original binary Excel format, and not the new-fangled XML-based one.
+</p>
+
+<p>
+Calligra spreadsheets offer less for scientists (unless like me, they refused to use something like Python, until eventually succumbing to the dark side and enjoying the biscuits), it offers less for accountants than even the most basic home-baked system, and because Macros can be problematic, I don't exactly feel that I'm missing out on much by not using spreadsheets.
+</p>
+
+<p>
+The one application that will not go away and that will likely remain useful for as long as we exist, is the presentation package.  The issue is that everyone already knows how to use powerpoint, and presentations made with it or its numerous templates don't stand out, but rather blend in.  And a lot of the time, despite its many drawbacks, the Mac OS presentation software produces vastly superior output.
+</p>
+
+<p>
+Presentations are where there is ample opportunity to get creative, and to stand out.  Support for shaders would have been nice.  Standard representation formats, with standard animations is precisely what QML is good at.  And more importantly, it would allow the presenter to create an ever-evolving template and visual style.  Alas, while only some of it is possible with LibreOffice, the remedial capabilities of Calligra Stage are overshadowed at every step.  The program is simply too simple to be useful.
+</p>
+
+<p>
+And this is the best case scenario for Open Source office suites.  Often one either presents a non-interactive PDF, or presents from their own device<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.  In these cases, surely running Calligra Stage would give you an edge, or at least wouldn't put one at a significant disadvantage? Well, sadly&#x2026;
+</p>
+</div>
+
+
+<ol class="org-ol">
+<li><a id="org22b87ab"></a>Lesson 12:<br />
+<div class="outline-text-5" id="text-3-4-0-1">
+<p>
+Or just kill it with fire.
+</p>
+
+<p>
+I'd argue that it is indeed interesting to ponder why some technologies are languishing in a limbo of being not quite irrelevant enough to be a non-issue, and yet still having so much disinterest that they would never reach a state of being useful.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orgd78ab4e" class="outline-3">
+<h3 id="orgd78ab4e"><span class="section-number-3">3.5.</span> LaTex, iPython, Inkscape</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+And at this point, the bigger question is why hasn't KDE embraced the approach to standard document formats that have Open Source implementations and a wide usage.  And indeed, why not embrace the fact that most of the time, if the person isn't already using Google Docs (as a fits all bucket for formatted text), or Microsoft Office (because they have to, because it's an institutional policy), they might be using something like LaTeX, or <code>typst</code>, or ConTeXt.
+</p>
+
+<p>
+And indeed, there's <code>kile</code> which, if marketted correctly, could easily beat Microsoft Word in terms of its capabilities.  It is not exactly WYSIWYG, and it isn't nearly as welcoming as MS Word, which is a great shame.  With enough elbow grease, however, it can become something greater than the sum of its parts.  The reason I still think that it needs elbow grease has to do with the fact that while I myself feel comfortable writing LaTeX, I don't think that many other people are.  And on that note, the people that do write LaTeX for a living (scientists, for example) rely on Overleaf to serve as a facsimile of Google Docs.
+</p>
+
+<p>
+Overleaf offers collaborative editing capabilities, and cloud storage with a pre-configured LaTeX distribution.  Of these problems, Kile maybe solves the issue of installing LaTeX locally, which due to the way that LaTeX works is tens of Gigabytes of mostly useless junk that <i>might</i> be useful some day.
+</p>
+
+<p>
+And in principle, Kile is a superfluous program, it doesn't need to exist, in any right world it'd be a plugin for Kate.  It doesn't offer anything that a decent tiling window manager, Okular, Konsole and Kate couldn't do or do better.  It doesn't even offer a rudimentary terribly WYSIWYG as Overleaf does.
+</p>
+
+<p>
+And Overleaf is the bare minimum.  I cannot fathom working on my research paper in Kile, given how much AucTex, RefTex, Git and CDLaTeX save me in terms of hassle.  And if I really needed to do online collaborative editing with someone who was using a similar technology, I would use `crdt.el`.  Your specialised program should not be overshadowed by a text editor maintained by a bunch of weirdos like me.
+</p>
+
+<p>
+If we're completely honest, program like Lyx are a step in the right direction, but they languish in not having support and honestly not having enough to justify continued development.  Too much coupling, too little freedom.  Lyx could help, if it provided a library on which people could experiment with creating their own GUI.  But that is kinda the problem.  The reason Kile exists, is because the problem is naturally factored into <code>pdflatex</code> that handles compilation and <code>konsole</code> ensuring interaction.  Some knowledge and some rendering for commonly used symbols.  Okular to display the document and Kate to render the code and edit it efficiently.  If Lyx were to factor the problem into re-usable components, it would survive.  Sadly, it doesn't.  It's a take-it-or-leave it program that uses some Qt libraries but doesn't show any interest in integrating with KDE.
+</p>
+
+<p>
+Cantor is a different story.  Most of today's science is done in a literate programming environment.  Unlike <code>org</code> which provides a decent DSL for that, the most common format for exchanging such developments are based around something known as <code>jupyter_notebook</code>.  Cantor provides an alternative that renders notebooks in a native GUI, with possibly better integration and more introspection.  It is easier for one to debug (in the sense of knowing the internal state of the Python interpreter), the notebook via Cantor.  However this program is hopelessly obtuse, most people wouldn't look twice at it.
+</p>
+
+<p>
+LabPlot might be a useful program for some aspiring scientists, but when I needed to create a library for producing posterior plots, extending LabPlot didn't seem to be feasible.  The KDE programs don't provide the back-end elbow grease and require quite a commitment from the only people that can benefit those projects.  It's difficult to make an application that is using Qt to integrate with KDE, and much less so well.  Not least of which, because of the technical debt that these projects only seem to accumulate.
+</p>
+
+<p>
+So what can I say about Karbon<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.  It is a decent application.  It offers a way to edit SVGs that isn't hopelessly laggy (<code>inkscape</code>), but it doesn't exactly let me do things to the same extent to be extant in the graphic design world.  Make no mistake a talented graphic designer would be able to squeeze out some use out of Karbon, but most talented graphic designers are too smart to squander their time on sub-par tools.  It needs a lot more time in the oven, for it to be competitive with better tools.  I would even go so far, as to say that it might benefit from being Audacitied-ed.
+</p>
+
+<p>
+So where does that leave <b>us</b>, technical people that run Linux on the daily, not despite, but because of the learning curve, and the benefits that are being offered by customisation? Well, KDE software doesn't seem to add much, despite having great potential.
+</p>
+
+<p>
+SVG editing ought to be a visual ordeal, but if I needed to fix some vector graphics (<i>e.g.</i> a plot) I would probably do so in Python first.  Would I bother with Kile given the existence of Vim, Emacs, TextMate, VSchrap or Kate? Probably not, these editors are competent enough to accomplish the tasks well, without any support.
+</p>
+
+<p>
+If I needed a GUI for Python, would I bother with Cantor? Maybe, but I have to make a conscious effort to do that.
+</p>
+
+<p>
+Would I use LabPlot for a scientific plot? The issue is that as a technical person, I'm <i>expected</i> to be able to extend <code>matplotlib</code> to plot exotic plots based on data that needs to be processed.  It's difficult to do that in LabPlot.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org3021f44"></a>Lesson 13:<br />
+<div class="outline-text-5" id="text-3-5-0-1">
+<p>
+Either assume technical competence and complement the existing tools (like Lyx), or at least ensure that the tool is useful for entry-level users.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgaf3d2ef" class="outline-3">
+<h3 id="orgaf3d2ef"><span class="section-number-3">3.6.</span> Ktorrent</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+I would say that this program needs more love.  Either someone should just copy over the features of QBittorrent, or at least make it extensible, so that I <i>could</i> if I needed to download media sequentially and with the first and last pieces first, currently I cannot.
+</p>
+
+<p>
+Incidentally, if KTorrent had support for plugins it would have been an excellent platform, the fact that the program hasn't been updated in the sense of being majorly refactored, is a benefit, if what it means is that older plugins can still work, and work well.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org53b2bb0"></a>Lesson 14:<br />
+<div class="outline-text-5" id="text-3-6-0-1">
+<p>
+Add a plugin system if you don't plan to fix it yourself.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org5c72f76" class="outline-3">
+<h3 id="org5c72f76"><span class="section-number-3">3.7.</span> Kmail and Merkuro</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+This is a program that I have personally struggled with and will continue to struggle with for a very long time.
+</p>
+
+<p>
+Why is this program challenging to use? It's too involved.  Yeah, I know what an <code>imap</code> server is, and what an SMTP protocol is.  Why do I need to configure them separately? Why does there need to be this silly situation of not being able to just send emails by choosing from a drop-down box of identities.  Yeah, there are edge case mail  servers for which this isn't true.  Don't cater to the <i>fucking edge case</i>!
+</p>
+
+<p>
+The program very routinely breaks, it suffers from problems when connecting to both a Microsoft Exchange email server<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>, gmail and for some reason the one place you'd think it'd shine, a plain old IMAP + SMTP server with no bells and whistles is also where it almost never delivers.  I constantly have doubts about whether or not my email will come from the right address with the right signature.  And I don't mean a Cyrilic or Armenian signature to an English-speaking recipient, I mean a GPG signature from an email account that I don't want to expose to the other people.
+</p>
+
+<p>
+So why the fuck do I put up with this bullshit? I don't know, honestly, but it probably has to do with the way the UI is designed.  Sure there are significant headaches associated to how KMail is configured.  But when it works, it gives you a snazzy, threaded view with icons that indicate different things.  Thunderbird is tied in terms of capability.  KMail runs in the background, so I can technically not worry about having it running in the foreground.
+</p>
+
+<p>
+I will mention that it is somewhat problematic to achieve the same results with my otherwise favourite tool &#x2013; Emacs.  You just can't beat a purpose-built application that leverages a native toolkit and was optimised for performance.  In all fairness, simplification is the <i>modus operandi</i> with its successor, Merkuro, that I can't even run with a <code>.desktop</code> on an Arch Linux machine, because it doesn't seem to have the full confidence of the people that designed it.  Worse yet, the backend of the system, is the problem.  There is very little for me to expect a completely rewritten backend architecture, and despite major strides in the common-case configuration, the way in which the abstractions are factored is fundamentally broken.  Merkuro, unless it takes an inordinate amount of responsibility and actually redesigns the backend is liable to be a dumber  version of KMail, plagued with the same problems, and having few if any of the positives, including the mail filters.
+</p>
+
+<p>
+And this isn't rocket science.  Apple Mail has existed in its present form for the past decade, with few if any changes, yet it offers very similar UI convenience with none of the fuss.  Given that emails are the most widely used form of communication, ubiquitous, unchanging, open and largely standardised, how the <i>bloody hell</i> do we still have these early teething issues in a program that has been the exact same since I was a university student.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgea64fd5"></a>Lesson 15:<br />
+<div class="outline-text-5" id="text-3-7-0-1">
+<p>
+Don't rewrite it for the sake of rewriting.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org093a4fa" class="outline-3">
+<h3 id="org093a4fa"><span class="section-number-3">3.8.</span> Browsers</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+This is perhaps a needlessly painful point, and I have no idea why this happened the way it happened and didn't happen any other way.
+</p>
+
+<p>
+We have many browser front ends, one back end, and mostly no agreement on why this terrible state of affairs erupted on the scene.  Probably because the Web is a hodgepodge of barely standard code.  Perhaps because the early web had decided to eschew the Unix approach for things and directly embed a JavaScript interpreter into the browser and couple it tightly to the layout engine.
+</p>
+
+<p>
+That is beside the point.  Currently, Falkon is the closest thing to an official KDE browser.  It has a plugin system, but no clear way of writing one, and even simple things as integrating KeePassXC into it seem to be problematic.  It is untenable, and while I would agree that writing a browser from the ground up would be too much hassle, I don't want people to do that.  Write a version of QuteBrowser that doesn't rely on modal editing<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>.  It's just that even Falkon to a large extent feels out of place on KDE.  It doesn't feel the same way <i>e.g.</i>  Elisa or KTorrent feel, and isn't certainly nearly as polished as Kate or Dolphin.
+</p>
+
+<p>
+I wish we had a revival of konqueror, because the idea of a single purpose application that can render both file systems and browse the web is ideal.  The main issue is that I now believe that it would be taken to mean to write a file manager in Electron.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org8336a69"></a>Lesson 16:<br />
+<div class="outline-text-5" id="text-3-8-0-1">
+<p>
+I don't even know what to say.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org8f816ba" class="outline-3">
+<h3 id="org8f816ba"><span class="section-number-3">3.9.</span> Dolphin</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+I want to round off this section with a discussion of an example of almost all of the lessons applied.  Dolphin is a remarkable application that brings many of the things that make KDE &#x2013; KDE, to the forefront and can be considered by many to be KDEs killer app.
+</p>
+
+<p>
+Dolphin is a file manager that fundamentally understands that you want to manage files.  It's not quite the swiss army knife that <code>konqueror</code> used to be, but that is for the better.  Konqueror would have been a mediocre browser and trying to make it passable would have pulled resources away from making it a good file manager.  And there's a lot to Dolphin.
+</p>
+
+<p>
+Want to have a UI that resembles YouTube with local videos, you can do it, just crank up the preview sizes.  Want to make things as clear as a table, sure, there's that view too.  OK, how about features that other file managers don't have? Well, Dolphin and Finder are to my knowledge the only two that also preserve the settings on a per-directory basis.  Certainly the GTK file managers could do the same, but we don't assign credit based on hypotheticals.  While it is very much within our power to detect radical changes in the colour palette, which could give us more insight, alas, this is something forlorn from the days of moodbars.
+</p>
+
+<p>
+Then there's grouping and sorting.  Far and away the best feature of Dolphin, that I believe could be made even better.  Search is wonderful, especially given that it's indexed search.  Network is not ideal, but it isn't terrible either.  The one place I would give Dolphin a negative assessment is its support for APFS devices and thus synching to IOS, but that is neither here nor there.  GVFS is a gnome-only technology and there hasn't been a Qt reimplementation for a decade.
+</p>
+
+<p>
+Dolphin thoughtfully includes multiple rename, it reads tags for you, and it allows you to both use it as a multi-window application as well as a so-called double-decker.  I don't have a `konsole` hotkey in KDE, because I often use Dolphin as a front-end for Konsole that allows me to avoid having to write <code>ls</code> half the time.
+</p>
+
+<p>
+Anything else? Well, it acts as a decent Git front-end especially if you have configured both GPG and SSH to use the secret service.  It lets you edit files as root, compress and decompress archives, copied a piece of text off the internet, fine paste it in and give it a name.
+</p>
+
+<p>
+Oh and did I mention that it can use tags? That's a feature that can save people a lot of headache, as anyone who has used tags on Mac OS can attest to.
+</p>
+
+<p>
+This is a program that I wish all KDE programs were similar to.  In some ways some of them are already like <code>Dolphin</code>, but a lot of them require a bit more work.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4bb2906" class="outline-2">
+<h2 id="org4bb2906"><span class="section-number-2">4.</span> Final thoughts</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+KDE plasma 6 seems like a solid release.  The project shows some promising programs in its tool-belt, and it will be popular.  However, I think that this is an interim state that can result in one of two things.
+</p>
+
+<p>
+KDE can make use of a resurgence in popularity to capture more mindshare and make good use of the semi-official endorsement from Valve.  It is an excellent time to regroup and to reconsider.   Many of the projects hitherto criticised are already on their last legs and are prime material to be retired.  Others, not unlike Kate, and Konsole and chat applications only need to be polished in a straightforward fashion.
+</p>
+
+<p>
+What I would probably not want to see is an eruption in new projects.  KDE has done a decent job in consolidating official applications under a separate banner to unofficial ones.  As such, it might be better to further segregate these applications so that users are clear as to which programs are being actively worked on, and which are just mostly along for the ride.  The main issue is that many applications that leverage Qt to great effect have no desire of integrating with KDE libraries from which they would greatly benefit.  Qbittorrent could use a better UI for installing plugins.  Configuring hotkeys is equally something that could use being standardised.  The main issue is that it's not as simple as just adding another library, the program has to be built from the ground up the KDE way, and no offence, but it's easier to build a pure Qt application and grow that, rather than build a KDE application after a Qt application was already made.  It doesn't, for example, involve a whole lot of rewriting and porting.
+</p>
+
+<p>
+I think we need to give KDE a round of appreciation and give it an opportunity to blossom into a UI paradigm.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: There are some rare occasions wherein some conferences require presentations to be submitted in a custom format, but I've yet to see that be nearly to the same extent to which complaints go from department to department about a form that doesn't look right or  "because Kevin from IT said that Libre Office was better, and now this form looks all wonky".
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: Which was somewhat omitted from the previous section, for reasons of it actually being based around a useful format
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: Cambridge uses that for some reason.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: The reason it's a problem, is because modal editing is often hijacked by the JavaScript on the page, making it impossible to navigate a page that is partially loaded, without the system messing things up.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Aleksandr Petrosyan</p>
+<p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
+<p class="date">Created: 2024-05-11 Сб 22:04</p>
+</div>
+</body>
+</html>
