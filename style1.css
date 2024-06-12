@@ -7,10 +7,6 @@ body {
 	background: #333333
 }
 
-.content {
-	column-width: 40em;
-}
-
 a {
 	color: #aaaaff;
 }
@@ -37,7 +33,7 @@ h3 {
 }
 
 .aside, .ASIDE {
-    font-family: "IBM Plex Mono";
+	font-family: "IBM Plex Mono";
 	font-size: 80%;
 	margin-left: 4em;
 	margin-right: 25%;
@@ -61,7 +57,6 @@ h2, h3, h4, h5, h6 {
 
 #table-of-contents{
 	margin: 1em;
-	position: sticky;
 	top: 0;
 	z-index: 100;
 	padding: 1em;
@@ -69,7 +64,6 @@ h2, h3, h4, h5, h6 {
 }
 
 #table-of-contents > h2 {
-	background: transparent;
 	color: #aaaaaa;
 }
 
@@ -167,4 +161,36 @@ blockquote:after {
 	font-weight: bold;
 	position: relative;
 	right: -2em;
+}
+
+/* Scroll tooling */
+.scroll-controller {
+	position: fixed;
+	bottom: 2em;
+	right: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.scroll-controller div {
+	padding: 0;
+	background-color: #263b49;
+	color: #555;
+	text-align: center;
+	font-size: 1rem;
+	width: 2em;
+	height: 1.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.3s;
+}
+
+.scroll-controller div:hover {
+	background-color: #1c282c;
+	color: #eee;
 }

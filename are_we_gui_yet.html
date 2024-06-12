@@ -3,13 +3,33 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-05-11 Сб 22:04 -->
+<!-- 2024-06-12 Ср 20:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Are We GUI Yet</title>
 <meta name="author" content="Aleksandr Petrosyan" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="style1.css" />
+<link rel="stylesheet" href="style1.css" /> <script src="main.js" /></script>
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -18,9 +38,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org732789c">1. Notes on Qt</a></li>
-<li><a href="#orga48f016">2. GTK on Relm4</a></li>
-<li><a href="#org3f01a1f">3. Iced</a></li>
+<li><a href="#org890b14a">1. Notes on Qt</a></li>
+<li><a href="#org23692a6">2. GTK on Relm4</a></li>
+<li><a href="#orgf8e35f1">3. Iced</a></li>
 </ul>
 </div>
 </div>
@@ -28,8 +48,8 @@
 This is a tiny discussion of why if you're writing your GUI in Rust, life is difficult for you.
 </p>
 
-<div id="outline-container-org732789c" class="outline-2">
-<h2 id="org732789c"><span class="section-number-2">1.</span> Notes on Qt</h2>
+<div id="outline-container-org890b14a" class="outline-2">
+<h2 id="org890b14a"><span class="section-number-2">1.</span> Notes on Qt</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 It has problems.
@@ -186,8 +206,8 @@ Alas, because I had already tried to implement a parser in C++, so I will try an
 </div>
 </div>
 
-<div id="outline-container-orga48f016" class="outline-2">
-<h2 id="orga48f016"><span class="section-number-2">2.</span> GTK on Relm4</h2>
+<div id="outline-container-org23692a6" class="outline-2">
+<h2 id="org23692a6"><span class="section-number-2">2.</span> GTK on Relm4</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This is problematic.  I find that the amount of boilerplate needed to accommodate the stupidity of GTK also not doing things right in the exact same way as Qt is just too much for me.
@@ -209,8 +229,8 @@ One way to fix it is to do static linkage.  The other way is to package into a r
 </div>
 
 
-<div id="outline-container-org3f01a1f" class="outline-2">
-<h2 id="org3f01a1f"><span class="section-number-2">3.</span> Iced</h2>
+<div id="outline-container-orgf8e35f1" class="outline-2">
+<h2 id="orgf8e35f1"><span class="section-number-2">3.</span> Iced</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This is raw.  But it is a forward-looking time investment.  At the very least it is actively developed and statically linked.
@@ -251,7 +271,7 @@ To anyone who would like to presuppose that these packaging standards are either
 <div id="postamble" class="status">
 <p class="author">Author: Aleksandr Petrosyan</p>
 <p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
-<p class="date">Created: 2024-05-11 Сб 22:04</p>
+<p class="date">Created: 2024-06-12 Ср 20:45</p>
 </div>
 </body>
 </html>

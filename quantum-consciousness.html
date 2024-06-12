@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-06-12 Ср 20:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quantum consciousness</title>
+<meta name="author" content="Aleksandr Petrosyan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style1.css" /> <script src="main.js" /></script>
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Quantum consciousness</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9460f09">1. The nature of consciousness</a></li>
+<li><a href="#org188d8ad">2. Penrose and "the emperor's new mind"</a>
+<ul>
+<li><a href="#org0f721c6">2.1. Quantum determinism</a></li>
+<li><a href="#org5a63e54">2.2. Properties of Consciousness</a></li>
+<li><a href="#org25c4e35">2.3. Beyond philosophical censorship</a></li>
+<li><a href="#org1f8c532">2.4. Epilogue, Josephson's starlings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This is an article that got started with motivation that I would genuinely consider problematic.  As is usual, I was reminded that a certain youtuber with a scientific background posted a video about "Penrose being right", and explaining that superradiance inside the cell was somehow proof that consciousness is quantum in nature.
+</p>
+
+<p>
+As is usual, I've had full intent of being malicious towards Dr Hossenfelder.  I don't exactly like her; I've made that public.  I've gone to great effort to be as obnoxious in her comment section&#x2026; and while I do genuinely stand by that her videos <i>may</i> do more harm than good, I believe that the best thing I can do is ignore the parts which are misleading and focus on what valuable insight can be gained from them.  The reason why I did that shall be expanded upon in another blog post, one that is perhaps a bit too spicy for Greybeard Entertainment, so most likely my personal blog.
+</p>
+
+<p>
+Without getting into the sentimental and inflammatory&#x2026; I should beg of you to take a drink and a snack, this is going to be a long and bumpy ride.
+</p>
+<div id="outline-container-org9460f09" class="outline-2">
+<h2 id="org9460f09"><span class="section-number-2">1.</span> The nature of consciousness</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The nature of consciousness is an elusive problem that despite being clearly defined within the reach of regular, common sense, seems to not be possible to neatly package into byte-sized analytical chunks and have science give us a clear answer.  This should not surprise you.  Cognising cognition is a self-referential paradox, the kind that bought down mathematics more than once.  What should surprise you (but doesn't) is that the question of "free will" is lumped together, despite being orthogonal and largely a semantic argument: if you believe in superdeterminism, free will doesn't just "not exist", it's ill-defined<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>!
+</p>
+
+<p>
+We all know what we mean when a clone in science fiction would say is this the "<b>you</b> - you, or the other - you".  Unfrtounately, that is where the clarity of the problem ends.  Some take it into the mystical domain, arguing that consciousness is your soul.  Some take it into the opposite, and equally stupid direction: you have no consciousness, it's all an elaborate illusion.  What I find most painful, is that while the former camp is clearly labelled as a bunch of crackpots that should not be taken seriously, the second camp<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, is considered the <i>rational point of view</i>.  The truth of the matter is that we don't know.  Anyone who claims otherwise, have chosen to ignore more than half of the problem, and have thus come up with a meaningless answer.
+</p>
+
+<p>
+With that said, there is a surprising resurgence in interest related to the question of what does it mean to understand somehing.  What does it mean to know something.  Is this connected to consciousness, or something that our bodies can do autonomously.  Chomsky's room is a good example of this resurgence, despite the mental experiment being proposed a good few years back, transformer-based next-token prediction machines that show a clear propensity to mimic intelligent discourse have sparked a resurgence in that discussion.  Can machines think?  If machines can think now, can a future machine be built that can?  Does the fact that we are built out of meat and machines are built out of something else matter for the ability to understand and synthesise cognition?  Is symbolic reasoning even necessary to call something conscious<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>?
+</p>
+
+<p>
+These are all questions that are sadly overshadowed by the meaningless questions of "will thinking machines take away our jobs"?  Or would the thinking machines become the Frankenstein's monster that we have been conditioned to fear by what Asimov considered boring science fiction?  Make no mistake, these questions are pertinent in the social climate that GPTs have evolved in.  Humans have recovered from a global pandemic that was thought to be impossible, a period of relative peace had been shattered by wars, across the world and in places where war was considered unthinkable to some.
+</p>
+
+<p>
+This happened at a time, whence people have become increasingly aware of the disparity of their economic condition compared to the conditions of those some few decades their younger.  It should not be a surprise that the real potential for Artificial General Intelligence is viewed not as a possibility to overcome the limitations of the human condition; nor as a means to liberate humans from "doing what pays their bills" in favour of "doing what they like"; nor indeed as the ultimate unbiased broker of peace, but as the very instrument of enforcing further restriction; a tool for debasing the poor further and pushing more humans into poverty than ever before; and as the ultimate and unvanquishable weapon of mass conflict.
+</p>
+
+<p>
+If even the simplest questions of "what it means to think" is giving way, there can be no hope of rational discussion on what it means to be conscious, aware and as a fundamental question of being, be.  There will be a discussion of Philosophers that attacked this problem.  I quite enjoy expanding on Nietzsche's ideas, and writings, as I feel that of all the philosophers that are popular in the zeitgest, his works were misunderstood to the point of abuse.  I will say that while this is a philosophical question, I myself, am not a philosopher.  One might even make a good case that I am not a true physicist<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>, though it is a career that I pursued with great intent and dreamed of for a quarter of a century.  So expect rough edges.  Expect to call me out.  But do expect a dialogue.  I consider my mission a success, if at the end of this article you have more questions than now.
+</p>
+
+<p>
+Ready?
+</p>
+</div>
+</div>
+<div id="outline-container-org188d8ad" class="outline-2">
+<h2 id="org188d8ad"><span class="section-number-2">2.</span> Penrose and "the emperor's new mind"</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I quite liked that book when I was reading it.  I had hoped<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> that it would be less technical, but much Like Sir Roger Penrose's other books it is both thorough, enlightening and a good challenge to grasp.
+</p>
+
+<p>
+This book, is divisive.  Unlike his "Road to Reality", widely regarded as a solid text on Physics, if a bit scattered, "The Emperor's New Mind" is touted as a classic, reviled as "total BS" (and that doesn't stand for Bank of Scotland), regarded as a book that asks the important questions and a book that provides misguided answers.  Where I stand on this book is largely going to determine your opinion on this article.  If you think I'm going to either praise it, or criticise it, you're right!  I'll do both.
+</p>
+
+<p>
+The praise is that the book clearly and meticulously crafts a narrative: cognition is not as simple as you think.  There are fundamental mathematical problems of computability, because a shocking number of students believe that just throwing more computational power is going to magically yield all answers.  The laws by which our physical reality manifests itself is deterministic, but with the asterisk of only predicting the probabilities of certain outcomes, not the outcomes themselves.  There are mind-bending problems in reconciling that theory, with the theory that explains why the GPS needs to correct for the fact that it's further away from Earth's barycentre than you or I.  There are unsolvable problems in mathematics that basically tell you that even if you could build a machine that could do all known mathematics, there is still unknown mathematics that you could tackle. And there will always be.
+</p>
+
+<p>
+The fact of the matter is, Penrose landed in hot water because of a different, and I'd argue somewhat misplaced assertion.  During a polite shouting match at the canteen in Cambridge, I challenged the student that called bullshit on Penrose's entire book; the response was the fact that quantum effects affect only a small part of the physiological processes in the cells.  If anything this indicates a misunderstanding of what Quantum effects really encompass, and further a misunderstanding of what Penrose was indeed trying to argue.  On that we shall elaborate shortly.
+</p>
+</div>
+
+<div id="outline-container-org0f721c6" class="outline-3">
+<h3 id="org0f721c6"><span class="section-number-3">2.1.</span> Quantum determinism</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The unfortunate problem that one must deal with, in any discussion that involves the quantum theory, is that huge chunks of it are known very well, others are considered tentatively accepted until a better alternative presents itself, and far too many pieces of it can be chalked up to "we simply don't know".
+</p>
+
+<p>
+Yet another observation that eludes most participants in discussions of Quantum theory, is that it is not <i>just</i>, in fact, as some would have you believe, <i>a theory of physics</i>, but also a novel theory of probability that only got interpreted as such, because of new physical phenomena.  People have known about wave optics for a long time before it was understood to be a universal<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup> set of laws that equally applies to pure particles.
+</p>
+
+<p>
+Complex numbers were finally<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup> being accepted into mainstream mathematics, despite being incredibly useful tools for many centuries beforehand, only when the predictions of quantum theory started to become apparent in everyday phenomena.
+</p>
+
+<p>
+To elaborate on that part, consider that probability outside of quantum mechanics concerns itself with phenomena whose likely-ness<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup> is a single positive finite number.  For convenience, all of these numbers are re-scaled to the interval \([0, 1]\), but could, for all intents and purposes any other larger interval offset in any direction by any amount.  But in the "classical world" as in statistics outside quantum effects, if the numbers are shifted into the negative, probabilities no longer work.  By modifying the theory, usually by introducing a probability amplitude, and consequently allowing both a constructive and destructive interference between different chains of events, one can construct a different kind of theory of probability.  That theory, coupled with some insights from linear algebra, allow one to construct a mechanics for waves and quanta<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>.
+</p>
+
+<p>
+Wave mechanics, a.k.a. Quantum mechanics, houses some of the weirdest phenomena, that boggle the untrained mind.  It is a remarkably consistent theory that through something known as the <i>correspondence principle</i> should govern all of our reality.  Indeed, all of <i>our</i> reality follows the rules of quantum mechanics that only approximately look like the rules of Newtonian reality.  But Newtonian rules are an illusion, not only <i>do they</i> not exist, they never did, only Quantum did.
+</p>
+
+<p>
+Unfortunately, while this theory works remarkably well at the smaller scales, and through Ehrenfest's theorem explains most phenomena at the Newtonian scale, it cannot, on its own, and without modification, explain what happens at the larger scales.  We do, however, know some parts of the logic that must be preserved in a theory that encompasses every known physical phenomenon, and unfortunately, amplitude statistics is something that must be present in the greater theory in some way shape or form.  In other words, Bell's theorem, must hold.
+</p>
+
+<p>
+Bell's theorem is a particularly problematic result for anyone who wishes to neatly package the laws of the universe into a single (update) function.  It runs counter to one's notion of classical determinism; that dynamical values are just that &#x2013; numbers.  It does not, and this must be emphasised, <b>preclude determinism as a whole</b>; if one thinks of state as vectors in a Hilbert space, and observable quantities as operators, there's a perfectly valid definition of determinism.  True, the observables are still random and the order in which you take measurements makes a huge difference, but that is just the nature of reality.  The fact of the matter is, that the wave-function is a deterministic beast.
+</p>
+
+<p>
+The reason why I believe that Penrose was misunderstood is that people assign him one point of view, and ignore the subtlety in it.  Quantum mechanics is not a loophole that lets you have free will, if you believed you didn't have it, the principle hasn't changed: you are still a physical object that cannot violate the laws of physics, so whether something is conscious<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>, is irrelevant<sup><a id="fnr.11" class="footref" href="#fn.11" role="doc-backlink">11</a></sup> in Physics.  Within the scope of Physics, there are questions that cannot be answered at all.  Paul A. M. Dirac, famously stated that it is beyond physics to try and understand why a particular electron goes through a particular hole.  Dirac had a remarkable intuition, and was a firm believer in locality, so it is not beyond the realm of possibility that he assumed something like Bell's theorem was true.  Given that "The principles of Quantum Mechanics" was published in 1930, and Bell's theorem in 1981, the only other reasonable explanation is that Bell was guided by that statement to see if it were actually true, what the consequences would be.
+</p>
+
+<p>
+For the sake of argument, and I will be covering both Bell's theorem, locality and principles of Quantum mechanics in other blog posts&#x2026; it is a good exercise for me to recall what that subject is all about, especially now.  Bell's theorem, one for which conclusive experimental evidence (closing of so-called loopholes) resulted in a very recent Nobel Prize in physics, states that: "Quantum mechanics is either local, or observable-deterministic".  That is the extent of it.  Einstein, in this situation is the person with most discontent: according to him the theory must be both realistic, <i>i.e.</i> having ways of determining the observables, we just don't know what yet, and local, <i>i.e.</i> what happens here can only be determined by causally linked events.  Einstein is wholly dissatisfied, because he needs both principles.  Most other scientists are partly satisfied and in the following way.
+</p>
+
+<p>
+If you want to believe pilot wave theory, and you ignore for the moment what it would mean to create the equivalent of QFT for it (quite an exercise if you think about it), you can state that "OK, there are particles riding waves, there's some probability that particles will follow the pilot wave's large crest or the smaller crest, and we don't know which one, and we can't tell which one, (just like in the mainstream interpretation), but we know for sure that it is realistic".  The problem, here, though, is that the pilot wave can be affected arbitrarily quickly.  It is an even more mysterious quantity than the wavefunction as a consequence.
+</p>
+
+<p>
+Similarly, most modern interpretations insist on the things being preferably local.  There are good reasons for doing that; people aren't just stuck in their old ways.  If you don't, it's impossible to reason about what's going in your lab, without knowing what's going at Alpha Centauri, and in the galaxy that went outside your lightcone a second after the Big Bang!  The reason why Bohmian mechanics aren't particularly widespread outside of people who work on Quantum information, is because for everyone else, non-locality means that you <b>can't</b> reason about <i>anything</i>, without knowing <i>everything</i>, including things that you can't know.  But I digress.  This point is to make it clear that no matter which side of the divide you are on, non-local hidden variables, or local quantum-determinism, you cannot much predict the outcome of every experiment.
+</p>
+
+<p>
+Does that lend itself to free will?  I don't know.  Probably not.  Because you can still define free will as freedom from Physical laws, but since you are part of the physical world, I can still <b>define</b> determinism in such a way, that you still can't violate the laws of Physics.  That is not what Penrose is arguing anyway.  What he is arguing has no relation to the apparent loophole of Quantum mechanics having a fundamentally different predictive power to regular Newtonian physics.  No.  In fact, if anything Penrose does make the argument that even in Regular Newtonian Physics, or for that matter, any Mathematical system, there are incompleteness theorems, that would allow for such loopholes if you needed them, but that this cannot be applied to free will.  Only consciousness.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5a63e54" class="outline-3">
+<h3 id="org5a63e54"><span class="section-number-3">2.2.</span> Properties of Consciousness</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We here must adhere to some very simple basic rules that are no longer being taught, because philosophy is no longer considered a fundamental discipline, at least not universally, and not fundamentally.  The rules are that if we want to operate on a new concept, we must break it down into its components, doing so carefully not to deprive what we want to talk about of its nature, but also to do so as aggressively as we can, given that we do want to make sense of a soup of problems, just one problem at a time.
+</p>
+
+<p>
+So what is consciousness.  Well, as yet, science failed to define it, but it should be possible to do so.  It is part of each of us, it is part of our reality.  Well, at least some people think that way.  For a moment, let's consider what you being <i>you</i> means in this context: there are experiences that are highly subjective.  You "<i>know</i>" what those experiences are, but you cannot specifically describe them.  Let me illustrate; imagine that you and an identical copy of you had one difference.  Your copy's blue was swapped with your copy's green.  For obvious reasons, the colours that you would see are identical, because (and for the time being let's assume so) there is one objective reality<sup><a id="fnr.12" class="footref" href="#fn.12" role="doc-backlink">12</a></sup>.
+</p>
+
+<p>
+It is then a question of whether your subjective experiences would be identical.  It is intuitive to say "no"<sup><a id="fnr.13" class="footref" href="#fn.13" role="doc-backlink">13</a></sup>, and we can clearly say why, the colour channel green is exchanged with the colour channel blue.  The world would make sense to your copy, if they had not seen, or recorded the world before the switch happened.
+</p>
+
+<p>
+Further, all objective representations of your subjective realities would be identical, so while the subjective experience is different, radically so, the objective consequences are the same.  How so?  Well, how does your copy know what "blue" is?  You point at something, say "blue" and that is blue, even if for your copy your "blue" is their "green" and vice versa.  Your copy has a radically different subjective experience, with the same objective reality and apparent agreement with the language.  If <i>we</i> didn't know that we swapped the nerves around, would we know that that is the case.
+</p>
+
+<p>
+So this leads to two philosophical terms: <i>qualia</i>, and (philosophical) <i>zombie</i>.  The former, is a plural for subjective experiences that are unique to your consciousness.  This is what makes you &#x2013; <i>you</i>.  The second is a being with all responses and outwards appearances of a human being, but no "soul"; no qualia.
+</p>
+
+<p>
+It used to be that these terms were very abstract and hard to explain, but nowadays, many people have experience with video games, so there's a direct analogy.
+</p>
+
+<p>
+The objective reality is the equivalent of a game world.  There are rules and nothing that falls outside those rules is possible.  In that way, no entity in the game has "free will".
+</p>
+
+<p>
+The player has a representation in the game world, that for all intents and purposes is an object that exists within the game world.  The information in that character is synthesised, and sent away, to be displayed on your screen.  Input is taken from your mouse and given to the player character.
+</p>
+
+<p>
+From the perspective of the game world, if it is coded correctly, that is, the player character is largely the same as all other characters.  There can be multiple and there can be characters which are not driven by a player, <i>zombies</i> in our terminology, and NPCs in common parlance.
+</p>
+
+<p>
+What you see on your screen is your <i>qualia</i>.  What your character does is a reflection of both the laws of the game world, and your inputs.  Your inputs do not lie outside what the game can react to, so every possibility is enumerated, and deterministic consequences are implemented.  Further, there are drivers that will nudge you, the player, towards certain behaviours, making some paths more likely.
+</p>
+
+<p>
+Within that framework, it is possible to see that presence or absence of free will for the player characters and similarly for the non-player-characters is a matter of perspective, but also a well-defined question with a real answer.  Specifically, the notion of free will must be defined.  One can, and should, regard free will as the equivalent of the player character input.  And indeed, this makes the notion well-defined.  Testable is another matter and here, Quantum mechanics could play a role; all we can test is whether the "in-game" logic is consistent, that each process has an associated wind-up, and that may well precede the synthesis of the full information.
+</p>
+
+<p>
+That does not mean that the decision couldn't have been made: to continue with the video game analogy, this could be ping-predictive compensation at work, where the wind-up is introduced for the likely outcome retroactively, and very cleverly masked by the "game logic"; given that the game controls both in-game representations for you and your target, you may be none the wiser to this happening.  Why would our real universe do that is another matter.  The fact of the matter is, using "in-game" tests, it is only possible to test for this in <i>some</i> cases, which are indistinguishable from other cases where the notion is simply not testable.  As a consequence, such tests give you a meaningless answer.  One could argue that looking at the code of the "game" <i>i.e.</i> being able to interpret the raw laws of the universe would permit one to see if there is, in fact, a way to have "input" from outside the system.  To control an avatar &#x2013; your meatsuit &#x2013; but not be wholly the consequence of the laws of that universe.  Even if we did do that, unless we know precisely what sits at the inputs, even the presence of the word "mouse" in the "source code" might not mean much.  It might be convenient to re-use the same abstraction for "human players" as there is for "bots".
+</p>
+
+<p>
+What I mean to say by this, is that the answer to "do we have free will" with the aforementioned definition of free will, is contingent on us knowing what consciousness is.  It is the <i>only</i>. even so tenuous, connection between the two notions.  It is perfectly reasonable to suspect that the entire universe accepts no input.  We might not have free will according to that reasonable definition, and still within the confines of the system, there might <i>still</i> be something beyond the objective reality that we think is the whole story.  But then again, to illustrate the example further, where do we draw the line?  What <i>is</i> objective reality that consciousness would lie beyond?  What if consciousness doesn't need anything outside the physical reality to fit our notions?
+</p>
+
+<p>
+To answer that question, we need to consider what the perceived intuitive properties of consciousness are.  I must emphasise that these properties are intuitive and largely based on qualia; as such wholly subjective, with objective manifestations.
+</p>
+
+<p>
+Firstly, consciousness is <i>continuous</i> and <i>strongly attached</i> to the physical avatar.  There seems to be a <i>you</i> it is the same <i>you</i> that was occupying the same avatar.  The attachment might not be to the physical object, because the matter in your body can be replaced and "used up"<sup><a id="fnr.14" class="footref" href="#fn.14" role="doc-backlink">14</a></sup>.  At the same time, the attachment is of a continuous sort: if one simply materialised a copy of your body, you don't expect your consciousness to similarly re-materialise at that location.
+</p>
+
+<p>
+Secondly, consciousness is atomic.  If one's brain were split in fashion in which the cells were uniformly distributed across two identical copies of the body, we would still expect to cleanly occupy one or none, but not both.
+</p>
+
+<p>
+Thirdly, our consciousness is bound by the constraints on the avatar, but is simultaneously above them.  By that I mean that our consciousness doesn't suddenly imbue our avatar with supernatural abilities.  That doesn't mean that our consciousness is bound to one avatar, but that if it is, there shouldn't be any physical manifestation of the previous in the current avatar, just because the two are bound.
+</p>
+
+<p>
+Now for obvious reasons mapping these notions onto our physical reality is a way of contructive categorisation.  It would be convenient to find a phenomenon that according to the laws of the universe had the same properties.  Newtonian physics lends itself well to continuity, but it is quite surprising from that perspective, though not at all problematic, that our consciousness is <i>not</i> attached to particular matter, but seems to be a function of a continued process.  Atomicity, however poses a challenge: it is possible to construct an exact copy of oneself down to the atom placement<sup><a id="fnr.15" class="footref" href="#fn.15" role="doc-backlink">15</a></sup>.  Furthermore, since Newtonian Physics has no notion of light-cones (or rather assumes light and therefore causality can propagate at an infinite speed), there is nothing in principle preventing faster than light communication, a single consciousness with a physical manifestation occupying two bodies at the same time is not disallowed.
+</p>
+
+<p>
+Quantum mechanics fares much better in this regard.  It is a better model of consciousness because of a few key observations.  Firstly, the notion of all particles being identical is fundamental<sup><a id="fnr.16" class="footref" href="#fn.16" role="doc-backlink">16</a></sup>; we go to great lengths in order to ensure that our notation cannot distinguish particles and all of atomic physics is experimental verification of the notion that there are no different particles, only particles in different states.  So the strong binding is to the configuration and quantum state, not to anything else.  Atomicity is easily ensured with the no-cloning theorem.  Furthermore, if you are a quantum state, then the <i>you</i> you is but one of a continuum, as such it is both possible that your avatar is your first and only manifestation, as it is possible that the <i>you</i> you is instantiated infinitely many times across infinitely many universes that have the hilbert space in which your quantum state is defined as a subspace.
+</p>
+
+<p>
+The reason why this interpretation has caught on is its obvious appeal: you are the quantum state, so you could be uploaded to a computer, but not a computer that exists now, rather a quantum computer.  So, reassuringly, ChatGPT is not a true AI, as it doesn't have a consciousness.  A Quantum computer requires some form of magic, that naturally differentiates it, and makes you special.  Similarly, you could be <i>quantum immortal</i> and this is not, if one really thinks, such a wild idea: if what you are is a quantum state, a well-defined concept, you are not really gone.  It is possible that your quantum state may be preserved in one way or another.  When your physical avatar changes its mode of operation, the information about your quantum state is conserved.  You cease to exist at the level you <i>used to</i> consider your level of consciousness, but you might end up in a situation where you are the consciousness of a planet.  Similarly, even the heat death of the universe is no big deal, because on an infinite timescale, the odds of your reocurrence are not vanishingly small.
+</p>
+
+<p>
+Of course, all of this has tenuous value to me.  If we're being completely honest, I find that the notion of identifying with a quantum state should be terrifying more than anything else.  Entanglement networks, sub-universes in the Everett interpretation, all of these notions seem to be of problematic value.
+</p>
+
+<p>
+I think the main problem is a lack of critical examination of the intuitive notions.
+</p>
+
+<p>
+I started with the binding.  But, the fact that my qualia seem to suggest a close binding to my avatar does not mean, that it is the only place where my consciousness is bound.  Further, continuity <i>is</i> tenuous.  Again, qualia seem to suggest that things like anæsthetics do in fact shut off consciousness, not just the recording in the meatsuit.  Dream-less sleep is yet another example.  So there's no need, no necessity for the intuitive notion to hold.  Additionally, for the strong binding to be true as well, one would have to observe the qualia for a <i>very</i> long time.  Unfortunately, if this were not true, and one's conscsiousness indeed jumped to another avatar, your original avatar would continue acting within margin of error of what the physics would predict.  Even large personality changes are possible with time, and are not often considered a pathology: children grow up, so how do you <i>know</i> that it is not <i>you</i> &#x2013; your consciousness &#x2013; jumping into another avatar?
+</p>
+
+<p>
+Similarly, atomicity seems to be largely traditional.  Sure, <i>you</i> might have the consciousness of a human, but that, in and of itself is a connected causal system with more than one instance.  To state that two identical copies of your body <i>cannot</i> have a consciousness is preposterous, because you are a collection of small entities &#x2013; cells working in tandem, but not always.  Perhaps higher forms of organised matter have higher forms of consciousness, and lower forms too.  By that moniker, however, reduction to the absurd would suggest that something like an electron might have a consciousness<sup><a id="fnr.17" class="footref" href="#fn.17" role="doc-backlink">17</a></sup>.  But there are no <i>good reasons</i> to believe that <i>that</i> is not the case.
+</p>
+
+
+<p>
+What is infinitely more frustrating is that qualia seem to prevent us from doing any form of experiment to clarify if these notions are accidental or a pattern.  I can foresee an experiment in which I, construct a near-identical clone of myself, and transplant one neuron at a time into that clone.  From a qualia perspective I should be able to exactly pinpoint the moment when my consciousness stopped, and <i>if</i> it resumes, the moment that it did resume.  It is possible to iterate this experiment (in principle), to establish whether or not these notions are justified.  But the main problem is that the third principle is still in effect: I would come to the same conclusion as before, if I were a zombie.  The information that was obtained is itself a qualia, and is indistinguishable from a similar experiment with no consciousness involved!
+</p>
+
+<p>
+While the notion of these principles is well-defined, the properties ascribed to consciousness are self-consistent, consistent with what we already know with the world, and as I demonstrated earlier, experimentally verifiable, not practically, but in principle!  So there is a cosmic conspiracy, a <b>philosophical censorship</b> if you will.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25c4e35" class="outline-3">
+<h3 id="org25c4e35"><span class="section-number-3">2.3.</span> Beyond philosophical censorship</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+In Physics, similar conspiracies were often an indication that our previous models were inadequate; we couldn't just alter our knowledge, we needed to change what we operated on.
+</p>
+
+<p>
+One way is like Dirac, to admit defeat: to state that consciousness is fundamentally not intelligible from the point of view of science, and that it can only be interrogated as something that manifestly is part of our physical reality, that it can effect change in the physical reality, but not <i>of physical reality</i>, there are no positive physical laws that would dictate how a consciousness operates.
+</p>
+
+<p>
+This approach is fine.  I suppose it is not satisfying but not counter-productive either.  This also gives a natural exception to free will, so we can immediately chalk that question up to whatever branch of philosophy is going to interrogate consciousness.  In a perverse way it is a status quo for the subject, unproductive though it is.
+</p>
+
+<p>
+The second approach we might take, is to build a theory around the fact that this information is fundamental.  This appears to be a sound basis, but if not careful, it devolves into absolute solipsism.  Indeed, consider that we impose as a fundamental restriction that this information must either be universally attainable, or universally unattainable.  One possibility is that we do not exist: universally unattainable, and thus nothing else does.  We are all philosophical zombies.  Obviously, no objective counter-argument can be made, because any argument you would make against that can be traced to "natural roots".  Yet, <i>you</i> know that you exist as a qualia.  The exact opposite of this principle is the basis of "I think, therefore I am".  The qualia of having thoughts and integrated information is a fact.  A subjective one, possibly, but a fact nonetheless.
+</p>
+
+<div class="aside" id="org15dc2c9">
+<p>
+This reminds me of a situation in Planescape Torment, wherein the main character (fittingly a "Nameless one"), argues on a philosophical basis that one other character doesn't exist.  Once that argument is won, the interlocutor ceases to exist.
+</p>
+
+<p>
+This is not too dissimilar to the misunderstanding that Einstein espoused towards Quantum mechanics, and Niels Bohr straw-manned.
+</p>
+
+</div>
+
+<p>
+The case of universal attainability, is similarly dissatisfying; the only way to circumvent the problem of communicating the experimental results, is if aside from you, everything else is an elaborate simulation.  "I think, therefore I am" and thus "the world exists to entertain me".  This is certainly a more interesting possibility, and it is espoused by a larger fraction of philosophers.  Incidentally, in this model, objective reality does exist, counter to what most philosophy textbooks might state.  The Physical objective reality is the sensory input to the "I think part".  Why does it not follow one's will to the letter is perhaps the same question as to why arbitrary thought structures don't have the properties of mathematics.  It might be that we are the only thing that exists in a bound world.  We may be the God of our reality, but we are bound in the same way that mathematics is bound.
+</p>
+
+<p>
+This line of thinking of course opens a whole other can of worms.  At the very least it offers an avenue to ask further questions.  It is by design protagonistic, but it neatly closes the question of what happens to your physical avatar.  Unfortunately, this explanation overshadows the original problem.  Because you are the God of the universe, you can still ask the question from the perspective of an avatar.  Why just one?  Why any at all?  Why do <i>you</i> experience time, wherein God must be timeless.  Obviously this solution is not satisfactory either.
+</p>
+
+<p>
+The third and perhaps most interesting approach is to question the problem of communication.  So far we have simply accepted that it is impossible to convey within the laws of the universe what we consider qualia.  Indeed, even in a model in which consciousness is rather physical, we have abused the laws of Quantum mechanics to prevent communication of qualia from being a possibility, or rather, the identification of consciousness with the quantum state would have resulted in qualia being a necessary part of sharing the consciousness.
+</p>
+
+<p>
+Now for the genius part.  Penrose is thoroughly correct to list all of the possible places, wherein a physical method of communication that could, specifically implement a consciousness qualia exchange protocol.  It could be in the notion of incompleteness, though that's tenuous, it could be quantum in nature, and it should probably not map onto our pre-conceived notions.  What's more interesting is that this does leave the door open to large coherent systems or larger conscious systems, but there ought to be a physical principle why an electron doesn't have a consciousness, but you do.
+</p>
+
+<p>
+This is a very subtle distinction between identifying Quantum mechanics as a way to wedge in non-determinism and salvage free will!  Penrose doesn't need any observable process to be fundamentally quantum either.  Sure, microtubules might be &#x2026;  for lack of a better word&#x2026;  insufficiently complex, for what we want them to be, but that is not necessary.
+</p>
+
+<p>
+Remember what I told you earlier about the correspondence principle.  All outwards appearances are classical.  One cannot interrogate the quantum state.  But one can, and does obtain the classical statistics as a limit.  It is not fundamentally required for some super-radiance to take place inside the cells, because the sheer fact that there are atoms is itself a quantum effect.  As such, we obtain something that could, if we relax the other requirements and supposed properties, work.  This is not entirely a theory, because it doesn't precisely define how things should operate, nor what is required for qualia to be organised at one particular level or another&#x2026;  but that is beside the point.  It is a starting point.  Many theories started in things far disjointed and disconnected with hypotheses that have no basis in reality, until some aspects of that theory prove useful, get refined and redefined further.
+</p>
+
+<p>
+One does not think that the road to quantum mechanics began with the discovery of wave optics, but it is, in fact, the earliest manifestation of quantum mechanics that we didn't know we needed to attribute to that theory.  I have a similar belief that much like many early steps the hypothesis that Penrose proposed is likely flawed; almost all theories including our modern take on quantum mechanics are.  But it is a useful starting point to discuss these things.  It is a thread that could be followed to its logical conclusion and largely result in a productive debate.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f8c532" class="outline-3">
+<h3 id="org1f8c532"><span class="section-number-3">2.4.</span> Epilogue, Josephson's starlings</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Before I finish this article I should perhaps consider an important note of thanks.  Usually those are put at the beginnings of articles, and I suspect that I should put this one there as well.  This entire subchapter is rather orthogonal but interesting to the discussion and can serve both as an effective introduction and conclusion.
+</p>
+
+<p>
+There is one person whom I need to thank personally, and that is Professor Crispin Barnes.  He is the person that rescued me from an eventual suicide both figuratively and directly.  His guidance is what inspired much of today's discussion and far more, because Quantum Mechanics is a fascinating subject.  He put my unrealistic criteria of success into perspective; his influence on my life is perhaps equivalent to that of Prof. Feynman for Stephen Wolfram.
+</p>
+
+<p>
+But what is more important, is that he re-framed the naïve notions of excellence and being a "good physicist" as a natural propensity that is not a property of the few chosen.  That Physics is a collaborative endeavour, is something that is often lost on the highly competitive clever students.  Physics is something that interests all, and all should be allowed to do it.  But being a good Physicist doesn't always necessarily mean thinking about problems in textbooks.  Oftentimes, just being interrogative is enough.  And moreover, humanity doesn't necessarily need as many high-energy physicists, sometimes a humble climate scientist can do a lot more good.  COVID<sup><a id="fnr.18" class="footref" href="#fn.18" role="doc-backlink">18</a></sup> had prevented me from pursuing the chosen path of an academic Physicist; but the fact that I was at peace with that notion and did not, as some might expect, sacrifice everyone and everything to pursue that pipe dream is largely Prof. Barnes' accomplishment.  I owe him a lot more than just my life.
+</p>
+
+<p>
+One of the great gifts that Prof. Barnes gifted me was the notion to ask Prof. Brian Josephson about his "starling experiment".  This is a valuable discussion, because it explains one important aspect of quantum mechanics that I emphasised, but didn't explain.
+</p>
+
+<p>
+Prof. Josephson wanted to see if the distribution of starlings had any similarity to quantum mechanical distributions.  This is very relevant in many ways, because it is both a more direct observation of the quantum nature of thought processes in avians, and a more abstract one, because the entire system might appear as one quantum mechanical system, wherein individual components might decohere, similarly to how a quantum computer can have coherence time far longer than that of a moderately sized, but differently organised collections of atoms, like <i>e.g.</i> a regular computer.  Size isn't intrinsically a problem.  And if it isn't there would be a specific set of quantum algorithms that nature would eventually be able to exploit.  At the very least the positions of starlings in flight would follow more closely a distribution generated by a wavefunction.
+</p>
+
+<p>
+I do not believe that me recounting the experiment, or indeed explaining its result would do it justice.  I recommend, while Prof. Josephson is alive, to give him much deserved attention.  This experiment deserves to be discussed; as someone who has received the information from him personally<sup><a id="fnr.19" class="footref" href="#fn.19" role="doc-backlink">19</a></sup>, I don't believe I understand the intricacies.  Feigning understanding is far more damaging than not mentioning it.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The reader might recall Robert Sapolsky writing a book, a case against free will.  I don't if it is worth discussing his book, as unlike the question of consciousness, free will is both properly defined, and the non-existence of such an entity is proven to the best of our scientific knowledge.  There is nothing to discuss there.  Read the book!
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+and I should be very specific that I don't talk about Dennett here, but rather about some that don't quite understand his teaching,
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Ed:note "symbolic reasoning" partly refers to the "memorizing" part: we're not just remembering facts; we process said facts and find some links, for instance, causal, chronological, spatial, thematic, etc. So, "symbolic reasoning" is not just about using symbols, not just about learning ones from others, it's all about introducing new abstract symbols and memorizing them with a given time interval.  Plus, while neurons work as detectors, the transformer models we interact with so far display a curious property: I don't remember them requesting clarifications when I ask whatever questions that come to mind, however ridiculous they are. Even if this architecture displays symbolic reasoning, it's all about the levels of abstraction and the relationships between symbols, as "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet" easily demonstrates.  Now, just to confirm my point, let's conduct a silly test: I'm using a Bluetooth mouse, so it'll be a question about Harald Bluetooth. And I love otters, so let's ask GPT4-o about king's pet otter to validate whether it's checking its confidence about symbols or not! (try this with an LLM of your choice, and ask it about Harald Bluetooth's pet otter).
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Which given the climate of LK99, mass retractions and scandals involving falsified and plagiarised work, I tend to view more as a compliment.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Assuming I could gift a hardcover to my wife, who is not a physicist nor particularly attuned to mathematics, but has tremendous respect for both.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Louis DeBroglie being one famous proponent of this idea
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Up to this day, there are those who would find the idea of complex numbers preposterous fudgery.  The square root of negative one is to this day called the <span class="underline">imaginary</span> unit.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+To avoid a precisely defined Bayesian term: likelihood.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+If one squints really hard, one could also construct the same mechanics without complex numbers, just by allowing negative probabilities&#x2026; that construction has the same properties as the geocentric model; technically it reproduces most of the theoretical results, but is also unnecessarily cumbersome.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+We must, of course, talk about the very important interpretation of Quantum mechanics that very nearly discredited it in the eyes of rationalists.  Deepak Chopra very nearly brought Quantum mechanics to the level of mysticism and essential oils.  Whether there is truth to his teaching is a curious matter to which we have no answer.  Whether his methods were scientific is a closed case with a resounding <i>no</i>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11" role="doc-backlink">11</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+This is my personal belief, and not specifically a property of the current interpretation of Quantum mechanics that is in vogue, nor necessarily of the person that subscribes to the belief that Quantum determinism is determinism.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12" role="doc-backlink">12</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Strictly speaking, Nietzsche would say that we assume too much, and indeed we are, but that is sufficient for this discussion.  We will try to expand on this in a different article.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13" role="doc-backlink">13</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Even though, strictly, there might be a perverse way in which the switch could have rectified the subjective perception.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14" role="doc-backlink">14</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The notion of every electron being exactly the same as every other electron that is internal to QFT is beneficial here.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15" role="doc-backlink">15</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Well, not practically mind you, because thermodynamics would prevent such precise manufacturing on such a massive scale in such a short time, but we can assume that biologically speaking we only need to copy the brain to create an exact copy, and the rest of the body can be constructed at a different timescale.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16" role="doc-backlink">16</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+QFT takes this idea further, and provides a justification.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17" role="doc-backlink">17</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+And that idea seems less absurd to me, than the university lecturer that taught me briefly.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.18" class="footnum" href="#fnr.18" role="doc-backlink">18</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+And undiagnosed ADHD that I, for lack of knowledge and understanding of the implications, prevented from being diagnosed.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.19" class="footnum" href="#fnr.19" role="doc-backlink">19</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Although, I don't think he would remember me per se&#x2026; Prof. Josephson sees many students, most far more brilliant than I am.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-05-22</p>
+<p class="author">Author: Aleksandr Petrosyan</p>
+<p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
+<p class="date">Created: 2024-06-12 Ср 20:45</p>
+</div>
+</body>
+</html>
