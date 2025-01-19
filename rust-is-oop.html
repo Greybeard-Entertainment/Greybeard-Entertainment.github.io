@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-12 Ср 20:45 -->
+<!-- 2025-01-19 Вс 23:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rust is an OOP langauge</title>
@@ -38,12 +38,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbf1c2af">1. Think objects</a></li>
-<li><a href="#org65055cd">2. Think classes and interfaces</a></li>
-<li><a href="#org7ec28db">3. Encapsulation</a></li>
-<li><a href="#org134879c">4. Methods inherent to types</a></li>
-<li><a href="#orge3eb44a">5. Dynamic dispatch</a></li>
-<li><a href="#orgced0503">6. Conclusion</a></li>
+<li><a href="#org6e39586">1. Think objects</a></li>
+<li><a href="#org8d9e941">2. Think classes and interfaces</a></li>
+<li><a href="#orgedc9918">3. Encapsulation</a></li>
+<li><a href="#orgbc63eba">4. Methods inherent to types</a></li>
+<li><a href="#orgccc4e07">5. Dynamic dispatch</a></li>
+<li><a href="#orgf787103">6. Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -52,21 +52,21 @@ And a terrible functional one.  As in yes, there are anonymous functions (Java h
 </p>
 
 <p>
-But I'm not here to pounce on Rust's uselessness in teaching functional programming, that is a topic for another article.  I don't hate Rust and I don't want to fling more negativity its way than I have to.
+I'm not here to pounce on Rust's uselessness in teaching functional programming, that is a topic for another article.  I don't hate Rust and I don't want to fling more negativity its way than I have to.
 </p>
 
 <p>
-But I will argue that Rust is truer to the original vision of OOP than the half-hearted attempts in Python, and the principled, though baroque approach adopted in Java.  It is not quite on the same level as SmallTalk, JavaScript or Objective C, but those languages are largely misunderstood.
+However, I will argue that Rust is truer to the original vision of OOP than the half-hearted attempts in Python, and the principled, though baroque approach adopted in Java.  It is not quite on the same level as SmallTalk, JavaScript or Objective C, but those languages are largely misunderstood.
 </p>
-<div id="outline-container-orgbf1c2af" class="outline-2">
-<h2 id="orgbf1c2af"><span class="section-number-2">1.</span> Think objects</h2>
+<div id="outline-container-org6e39586" class="outline-2">
+<h2 id="org6e39586"><span class="section-number-2">1.</span> Think objects</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Many are under the impression that just because there isn't a word <code>class</code> native to Rust that this means that Rust doesn't have either classes or objects.  That is far from the truth.  In fact, I would argue that it forces you to think of objects more object like than either C++ or Java do.
+Many are under the impression that just because there isn't a word <code>class</code> native to Rust that this means that Rust doesn't have either classes or objects.  That is far from the truth.  In fact, it forces you to think of objects more object like than either C++ or Java do.
 </p>
 
 <p>
-Think about it.  Even something as "benign" as a string is a thing that has a beginning and an end.  It has a lifetime.  Within that lifetime, the object can be signalled.  Outside of that lifetime, signalling that object is forbidden, at least within the safe subset of the language.   There is a specific way of referencing an object in that context.  Unlike what the C++ (and C-like) syntax would suggest, there are no references in Rust.  There are borrows that for historical reasons (failure to plan ahead) are called mutable and immutable.  The reason there is a distinction is because of a rule that is being enforced by any Rust compiler, there can either be one reference through which a larger subset of operations is permitted (called a <code>mutable</code> reference, but this is a misnomer<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>), or any number of more strict references that incidentally are only valid for the duration of the object's lifetime.
+Think about it.  Even something as "benign" as a string is a thing that has a beginning and an end.  It has a lifetime.  Within that lifetime, the object can be signalled.  Outside of that lifetime, signalling that object is forbidden, at least within the safe subset of the language.  There is a specific way of referencing an object in that context.  Unlike what the C++ (and C-like) syntax would suggest, there are no references in Rust.  There are borrows that for historical reasons (failure to plan) are called mutable and immutable.  The reason there is a distinction is because of a rule that is being enforced by any Rust compiler, there can either be one reference through which a larger subset of operations is permitted (called a <code>mutable</code> reference, but this is a misnomer<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>), or any number of more strict references that incidentally are only valid throughout the object's lifetime.
 </p>
 
 <p>
@@ -75,8 +75,8 @@ So how is this <b>not</b> OOP?
 </div>
 </div>
 
-<div id="outline-container-org65055cd" class="outline-2">
-<h2 id="org65055cd"><span class="section-number-2">2.</span> Think classes and interfaces</h2>
+<div id="outline-container-org8d9e941" class="outline-2">
+<h2 id="org8d9e941"><span class="section-number-2">2.</span> Think classes and interfaces</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 If one has read my personal blog (this will be published here as well, at some point) you will know that things like inheritance are not intrinsic to OOP, but in fact solve a problem that is imposed by the paradigm.
@@ -87,7 +87,7 @@ To put it simply, instead of having direct access to most objects, one has to go
 </p>
 
 <p>
-Let's illustrate on an example, perhaps a bit more contrived.  In an OOP world, there is no state, there are only signals.  The only way to communicate with an object to query its state is via signals.  But most signals are trivial.   A programming language like SmallTalk solved this problem easily, and the modern day problems related to it have more to do with the refusal to let go of the procedural aspects of programming than with the ineptitude(s) of the OOP paradigm.  Case in point, if one wanted to model the animal kingdom<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, there are various signals one can process, like <code>eat</code>, <code>drink</code>, <code>reproduce</code> which are not simple queries of one's state<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.  Yet, they are all trivial.  In the domain of the problem, most diets fall into categories of carnivore and herbivore, reproduction is similarly categorised very simply, with some notable outliers.  <b>Most of the signals for most of the objects are going to be identical.</b>
+Let's illustrate on an example, perhaps a bit more contrived.  In an OOP world, there is no state, there are only signals.  The only way to communicate with an object to query its state is via signals.  But most signals are trivial.  A programming language like <code>SmallTalk</code> solved this problem easily, and the modern day problems related to it have more to do with the refusal to let go of the procedural aspects of programming than with the ineptitude(s) of the OOP paradigm.  Case in point, if one wanted to model the animal kingdom<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, there are various signals one can process, like <code>eat</code>, <code>drink</code>, <code>reproduce</code> which are not simple queries of one's state<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.  Yet, they are all trivial.  In the domain of the problem, most diets fall into categories of carnivore and herbivore, reproduction is similarly categorised simply, with some notable outliers.  <b>Most of the signals for most of the objects are going to be identical.</b>
 </p>
 
 <p>
@@ -95,7 +95,7 @@ Now here I will make a distinction in how OOP languages traditionally solved the
 </p>
 
 <p>
-The first key assumption is that there is a clear hierarchy.  Within the C world, one would make a table for all unique functions and then point each individual entity's behaviour function pointer to that function.  So adding each new species entity isn't a hard task.  But the amount of work is certainly sub-optimal.  So one needs to spend a bit more time and see that there are categories of herbivore and carnivore, vertebrate vs invertebrate, and to come up with a tree of inheritance that tends to categorise animals by which behaviour they engage in.  Sometimes, if the behaviour follows from another behaviour, and as a crucial difference from the function pointer approach, one can make a shortcut.  Java, Rust, Haskell, and C++ all do it that way.   But the devil is in the details.
+The first key assumption is that there is a clear hierarchy.  Within the C world, one would make a table for all unique functions and then point each individual entity's behaviour function pointer to that function.  So adding each new species entity isn't a hard task.  But the amount of work is certainly sub-optimal.  So one needs to spend a bit more time and see that there are categories of herbivore and carnivore, vertebrate vs invertebrate, and to come up with a tree of inheritance that tends to categorise animals by which behaviour they engage in.  Sometimes, if the behaviour follows from another behaviour, and as a crucial difference from the function pointer approach, one can make a shortcut.  Java, Rust, Haskell, and C++ all do it that way.  But a detailed look shall be of great utility.
 </p>
 
 <p>
@@ -120,8 +120,8 @@ So with Rust, you are actually imposing a hierarchical structure, you're just no
 </div>
 </div>
 
-<div id="outline-container-org7ec28db" class="outline-2">
-<h2 id="org7ec28db"><span class="section-number-2">3.</span> Encapsulation</h2>
+<div id="outline-container-orgedc9918" class="outline-2">
+<h2 id="orgedc9918"><span class="section-number-2">3.</span> Encapsulation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 One of the most important aspects of OOP is the establishment of boundaries.  Alan Kay's original vision is that state is only meaningful from the perspective of the inherent methods.  Naturally this leads to even more code being required to query the state outside the object, more work and more thinking.  So programming languages like Java allowed some state to be public, similarly to C, but unlike C, any attempt to access the inaccessible state is a compilation error<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>.
@@ -149,8 +149,8 @@ Nobody would ever think to articulate the borrow checking as a good old fashione
 </div>
 </div>
 
-<div id="outline-container-org134879c" class="outline-2">
-<h2 id="org134879c"><span class="section-number-2">4.</span> Methods inherent to types</h2>
+<div id="outline-container-orgbc63eba" class="outline-2">
+<h2 id="orgbc63eba"><span class="section-number-2">4.</span> Methods inherent to types</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Rust has inherent <code>impl</code> s, do I need to say more than that?
@@ -178,8 +178,8 @@ I'll admit that personally I think that the prefix is just as readable, but the 
 </div>
 </div>
 
-<div id="outline-container-orge3eb44a" class="outline-2">
-<h2 id="orge3eb44a"><span class="section-number-2">5.</span> Dynamic dispatch</h2>
+<div id="outline-container-orgccc4e07" class="outline-2">
+<h2 id="orgccc4e07"><span class="section-number-2">5.</span> Dynamic dispatch</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This is somewhat controversial.  Rust is very opinionated about dynamic dispatch.  And it allows it, though it doesn't clearly communicate that sometimes (very often in fact) it is the right tool for the job.
@@ -195,8 +195,8 @@ What I find really fascinating is the staunch refusal to recognise that the succ
 </div>
 </div>
 
-<div id="outline-container-orgced0503" class="outline-2">
-<h2 id="orgced0503"><span class="section-number-2">6.</span> Conclusion</h2>
+<div id="outline-container-orgf787103" class="outline-2">
+<h2 id="orgf787103"><span class="section-number-2">6.</span> Conclusion</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Rust is OOP.  It is in fact, OOP at its best so far.  It is no way comparable to OCaml (and definitely not StandardML), but it is comparable to C++ or SmallTalk, even though those languages still have certain advantages, nothing in tech is ever a direct upgrade.
@@ -237,7 +237,7 @@ There is an interesting fact in biology.  Many species tend to evolve into a cra
 <div id="postamble" class="status">
 <p class="author">Author: Aleksandr Petrosyan</p>
 <p class="email">Email: <a href="mailto:ap886@cantab.ac.uk">ap886@cantab.ac.uk</a></p>
-<p class="date">Created: 2024-06-12 Ср 20:45</p>
+<p class="date">Created: 2025-01-19 Вс 23:08</p>
 </div>
 </body>
 </html>
